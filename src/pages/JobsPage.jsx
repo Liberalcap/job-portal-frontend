@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import jobService from '../services/jobService';
+import { useNavigate } from "react-router-dom";
 
 function JobsPage() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  const navigate = useNavigate(); // ✅ FIX ADDED
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -47,9 +50,14 @@ function JobsPage() {
               <p><strong>Location:</strong> {job.location}</p>
               <p>{job.description}</p>
               <p><strong>Salary:</strong> {job.salary}</p>
-              <button style={{ padding: '10px 20px', cursor: 'pointer' }}>
+
+              <button
+                onClick={() => navigate(`/jobs/${job.id}`)}
+                style={{ padding: '10px 20px', cursor: 'pointer' }}
+              >
                 View Details
               </button>
+
             </div>
           ))}
         </div>

@@ -37,6 +37,13 @@ api.interceptors.response.use(
       data: error.response?.data,
     });
 
+    axios.get(`http://localhost:8080/api/jobs/${id}`)
+  .then(res => {
+    console.log("DATA:", res.data);
+    setJob(res.data);
+  })
+  .catch(err => console.error(err));
+
     if (error.response?.status === 401) {
       // Clear token if unauthorized
       localStorage.removeItem('authToken');

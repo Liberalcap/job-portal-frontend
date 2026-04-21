@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import JobsPage from './pages/JobsPage';
 import authService from './services/authService';
+import JobDetails from "./pages/JobDetails";
 import './App.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<h1 style={{ padding: '20px' }}>Welcome to Job Portal</h1>} />
+        <Route path="/jobs/:id" element={<JobDetails />} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
