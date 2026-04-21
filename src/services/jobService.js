@@ -1,10 +1,10 @@
-import api from './api';
+import api from "./api";
 
 const jobService = {
-  // Get all jobs with pagination and filters
+  // Get all jobs
   getAllJobs: async (page = 0, size = 10, filters = {}) => {
     const params = { page, size, ...filters };
-    const response = await api.get('/jobs', { params });
+    const response = await api.get("/jobs", { params });
     return response.data;
   },
 
@@ -14,19 +14,19 @@ const jobService = {
     return response.data;
   },
 
-  // Create new job (HR/Admin only)
+  // Create new job
   createJob: async (jobData) => {
-    const response = await api.post('/jobs', jobData);
+    const response = await api.post("/jobs", jobData);
     return response.data;
   },
 
-  // Update job (HR/Admin only)
+  // Update job
   updateJob: async (jobId, jobData) => {
     const response = await api.put(`/jobs/${jobId}`, jobData);
     return response.data;
   },
 
-  // Delete job (HR/Admin only)
+  // Delete job
   deleteJob: async (jobId) => {
     const response = await api.delete(`/jobs/${jobId}`);
     return response.data;
@@ -34,7 +34,15 @@ const jobService = {
 
   // Search jobs
   searchJobs: async (searchTerm) => {
-    const response = await api.get('/jobs', { params: { search: searchTerm } });
+    const response = await api.get("/jobs", {
+      params: { search: searchTerm },
+    });
+    return response.data;
+  },
+
+  // ✅ APPLY TO JOB (correct)
+  applyToJob: async (jobId) => {
+    const response = await api.post(`/applications/${jobId}`);
     return response.data;
   },
 };

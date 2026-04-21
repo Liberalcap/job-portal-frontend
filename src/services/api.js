@@ -1,54 +1,55 @@
-import axios from 'axios';
+import axios from "axios";
 
-// Configure the base URL - adjust if your backend runs on a different port
-const API_BASE_URL = 'http://localhost:8080/api';
-
-console.log('API Base URL:', API_BASE_URL);
+const API_BASE_URL = "http://localhost:8080/api";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
-  withCredentials: false, // Set to true if you need credentials
+  withCredentials: false,
 });
 
-// Add request interceptor to include JWT token if it exists
+// ✅ REQUEST INTERCEPTOR (attach JWT)
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem("authToken");
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Add response interceptor for error handling
+// ✅ RESPONSE INTERCEPTOR (clean + safe)
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.error('API Error:', {
-      status: error.response?.status,
-      message: error.response?.data?.message || error.message,
-      data: error.response?.data,
-    });
+    const status = error.response?.status;
+    const message =
+      error.response?.data?.message || error.message || "Unknown error";
 
-    axios.get(`http://localhost:8080/api/jobs/${id}`)
-  .then(res => {
-    console.log("DATA:", res.data);
-    setJob(res.data);
-  })
-  .catch(err => console.error(err));
+    console.error("API Error:", { status, message });
 
-    if (error.response?.status === 401) {
-      // Clear token if unauthorized
-      localStorage.removeItem('authToken');
-      window.location.href = '/login';
+    // 🔐 Handle unauthorized
+    if (status === 401) {
+      localStorage.removeItem("authToken");
+      window.location.href = "/login";
     }
+
+    // ⚠️ Optional: handle forbidden
+    if (status === 403) {
+      console.warn("Forbidden request");
+    }
+
+    // ⚠️ Optional: handle server error
+    if (status === 500) {
+      console.error("Server error occurred");
+    }
+
     return Promise.reject(error);
   }
 );
