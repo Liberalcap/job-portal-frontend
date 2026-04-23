@@ -10,14 +10,14 @@ const authService = {
     return response.data;
   },
 
-  // User login
-  login: async (credentials) => {
-    const response = await api.post('/auth/login', credentials);
-    if (response.data.token) {
-      localStorage.setItem('authToken', response.data.token);
-    }
-    return response.data;
-  },
+  login: async (email, password) => {
+  const response = await api.post('/auth/login', { email, password });
+
+  // 🔥 STORE TOKEN HERE
+  localStorage.setItem("authToken", response.data.token);
+
+  return response.data;
+},
 
   // Logout
   logout: () => {
