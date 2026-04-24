@@ -1,11 +1,12 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import JobsPage from './pages/JobsPage';
-import authService from './services/authService';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import JobsPage from "./pages/JobsPage";
+import authService from "./services/authService";
 import JobDetails from "./pages/JobDetails";
-import MyApplications from "./pages/MyApplications"; // ✅ fixed
-import './App.css';
+import MyApplications from "./pages/MyApplications";
 import RecruiterDashboard from "./pages/RecruiterDashboard";
+import CreateJob from "./pages/CreateJob";
+import "./App.css";
 
 function App() {
   const isAuthenticated = authService.isAuthenticated();
@@ -13,56 +14,69 @@ function App() {
 
   const handleLogout = () => {
     authService.logout();
-    window.location.href = '/login';
+    window.location.href = "/login";
   };
 
   return (
     <Router>
-      <nav style={{ padding: '10px', backgroundColor: '#f0f0f0' }}>
-        <Link to="/" style={{ marginRight: '20px' }}>
+      <nav style={{ padding: "10px", backgroundColor: "#f0f0f0" }}>
+        <Link to="/" style={{ marginRight: "20px" }}>
           Home
         </Link>
 
-        {/* ✅ fixed route */}
-        <Link to="/my-applications" style={{ marginRight: '20px' }}>
-          My Applications
-        </Link>
-
-        <Link to="/jobs" style={{ marginRight: '20px' }}>
+        <Link to="/jobs" style={{ marginRight: "20px" }}>
           Jobs
         </Link>
 
-        {role === "ADMIN" && (
-        <Link to="/recruiter" style={{ marginRight: "20px" }}>
-          Recruiter
+        <Link to="/my-applications" style={{ marginRight: "20px" }}>
+          My Applications
         </Link>
+
+        {/* ✅ Only show for ADMIN */}
+        {role === "ADMIN" && (
+          <>
+            <Link to="/recruiter" style={{ marginRight: "20px" }}>
+              Recruiter
+            </Link>
+
+            <Link to="/create-job" style={{ marginRight: "20px" }}>
+              Create Job
+            </Link>
+          </>
         )}
 
         {isAuthenticated ? (
-          <button onClick={handleLogout} style={{ marginLeft: 'auto' }}>
+          <button onClick={handleLogout} style={{ marginLeft: "20px" }}>
             Logout
           </button>
         ) : (
-          <Link to="/login" style={{ marginLeft: 'auto' }}>
+          <Link to="/login" style={{ marginLeft: "20px" }}>
             Login
           </Link>
         )}
       </nav>
 
       <Routes>
-        <Route path="/" element={<h1 style={{ padding: '20px' }}>Welcome to Job Portal</h1>} />
+        <Route
+          path="/"
+          element={<h1 style={{ padding: "20px" }}>Welcome to Job Portal</h1>}
+        />
+
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/jobs/:id" element={<JobDetails />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/recruiter" element={<RecruiterDashboard />} />
         <Route path="/my-applications" element={<MyApplications />} />
+        <Route path="/create-job" element={<CreateJob />} />
 
+        {/* ✅ Protected recruiter route */}
         <Route
           path="/recruiter"
           element={
-            authService.getUserRole() === "ADMIN"
-              ? <RecruiterDashboard />
-              : <h2 style={{ padding: "20px" }}>Access Denied</h2>
+            role === "ADMIN" ? (
+              <RecruiterDashboard />
+            ) : (
+              <h2 style={{ padding: "20px" }}>Access Denied</h2>
+            )
           }
         />
       </Routes>
