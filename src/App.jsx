@@ -5,6 +5,7 @@ import authService from './services/authService';
 import JobDetails from "./pages/JobDetails";
 import MyApplications from "./pages/MyApplications"; // ✅ fixed
 import './App.css';
+import RecruiterDashboard from "./pages/RecruiterDashboard";
 
 function App() {
   const isAuthenticated = authService.isAuthenticated();
@@ -46,6 +47,7 @@ function App() {
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/jobs/:id" element={<JobDetails />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/recruiter" element={<RecruiterDashboard />} />
 
         {/* ✅ fixed route + component */}
         <Route path="/my-applications" element={<MyApplications />} />
