@@ -14,7 +14,7 @@ function LoginPage() {
 
     try {
       console.log('Attempting login with:', { email });
-      const response = await authService.login(email, password );
+      const response = await authService.login({ email, password });
       console.log('Login successful:', response);
       window.location.href = '/';
     } catch (err) {

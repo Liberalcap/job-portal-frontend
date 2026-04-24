@@ -9,6 +9,7 @@ import RecruiterDashboard from "./pages/RecruiterDashboard";
 
 function App() {
   const isAuthenticated = authService.isAuthenticated();
+  const role = authService.getUserRole();
 
   const handleLogout = () => {
     authService.logout();
@@ -31,6 +32,12 @@ function App() {
           Jobs
         </Link>
 
+        {role === "ADMIN" && (
+        <Link to="/recruiter" style={{ marginRight: "20px" }}>
+          Recruiter
+        </Link>
+        )}
+
         {isAuthenticated ? (
           <button onClick={handleLogout} style={{ marginLeft: 'auto' }}>
             Logout
@@ -48,9 +55,16 @@ function App() {
         <Route path="/jobs/:id" element={<JobDetails />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/recruiter" element={<RecruiterDashboard />} />
-
-        {/* ✅ fixed route + component */}
         <Route path="/my-applications" element={<MyApplications />} />
+
+        <Route
+          path="/recruiter"
+          element={
+            authService.getUserRole() === "ADMIN"
+              ? <RecruiterDashboard />
+              : <h2 style={{ padding: "20px" }}>Access Denied</h2>
+          }
+        />
       </Routes>
     </Router>
   );

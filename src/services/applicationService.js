@@ -30,7 +30,14 @@ const applicationService = {
       }
     );
     return response.data;
-  }
+  },
+
+  updateStatus: async (id, status) => {
+  const response = await api.put(`/applications/${id}/status`, null, {
+    params: { status },
+  });
+  return response.data;
+  },
 };
 
 export default applicationService;
