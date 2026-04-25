@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080/api";
+const API_BASE_URL = "http://localhost:8080";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -13,7 +13,7 @@ const api = axios.create({
 // ✅ REQUEST INTERCEPTOR (attach JWT)
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("authToken"); // make sure you use this key everywhere
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -34,18 +34,18 @@ api.interceptors.response.use(
 
     console.error("API Error:", { status, message });
 
-    // 🔐 Handle unauthorized
-    if (status === 401) {
+    // 🔐 Handle unauthorized (fix redirect)
+    if (status === 401 && !window.location.pathname.includes("/login")) {
       localStorage.removeItem("authToken");
-      window.location.href = "/login";
+      window.location.href = "/login"; // ✅ FIXED
     }
 
-    // ⚠️ Optional: handle forbidden
+    // ⚠️ Handle forbidden
     if (status === 403) {
       console.warn("Forbidden request");
     }
 
-    // ⚠️ Optional: handle server error
+    // ⚠️ Handle server error
     if (status === 500) {
       console.error("Server error occurred");
     }
