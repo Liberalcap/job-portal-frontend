@@ -13,7 +13,7 @@ function JobDetails() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    api.get(`/jobs/${id}`)
+    api.get(`/api/jobs/${id}`)
       .then((res) => {
         setJob(res.data);
       })

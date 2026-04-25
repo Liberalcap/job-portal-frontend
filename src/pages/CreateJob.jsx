@@ -27,7 +27,7 @@ function CreateJob() {
     // ✅ ADD THIS DELAY
     // await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    await api.post("/jobs", job);
+    await api.post("/api/jobs", job);
 
     setSuccess("Job created successfully!");
 

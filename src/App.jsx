@@ -6,6 +6,7 @@ import JobDetails from "./pages/JobDetails";
 import MyApplications from "./pages/MyApplications";
 import RecruiterDashboard from "./pages/RecruiterDashboard";
 import CreateJob from "./pages/CreateJob";
+import UsersPage from "./pages/UsersPage";
 import "./App.css";
 
 function App() {
@@ -20,28 +21,16 @@ function App() {
   return (
     <Router>
       <nav style={{ padding: "10px", backgroundColor: "#f0f0f0" }}>
-        <Link to="/" style={{ marginRight: "20px" }}>
-          Home
-        </Link>
+        <Link to="/" style={{ marginRight: "20px" }}>Home</Link>
+        <Link to="/jobs" style={{ marginRight: "20px" }}>Jobs</Link>
+        <Link to="/my-applications" style={{ marginRight: "20px" }}>My Applications</Link>
 
-        <Link to="/jobs" style={{ marginRight: "20px" }}>
-          Jobs
-        </Link>
-
-        <Link to="/my-applications" style={{ marginRight: "20px" }}>
-          My Applications
-        </Link>
-
-        {/* ✅ Only show for ADMIN */}
+        {/* ✅ Only ADMIN sees these */}
         {role === "ADMIN" && (
           <>
-            <Link to="/recruiter" style={{ marginRight: "20px" }}>
-              Recruiter
-            </Link>
-
-            <Link to="/create-job" style={{ marginRight: "20px" }}>
-              Create Job
-            </Link>
+            <Link to="/recruiter" style={{ marginRight: "20px" }}>Recruiter</Link>
+            <Link to="/create-job" style={{ marginRight: "20px" }}>Create Job</Link>
+            <Link to="/users" style={{ marginRight: "20px" }}>Users</Link>
           </>
         )}
 
@@ -57,26 +46,29 @@ function App() {
       </nav>
 
       <Routes>
-        <Route
-          path="/"
-          element={<h1 style={{ padding: "20px" }}>Welcome to Job Portal</h1>}
-        />
-
+        <Route path="/" element={<h1 style={{ padding: "20px" }}>Welcome to Job Portal</h1>} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/jobs/:id" element={<JobDetails />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/my-applications" element={<MyApplications />} />
         <Route path="/create-job" element={<CreateJob />} />
 
-        {/* ✅ Protected recruiter route */}
+        {/* ✅ Protected Routes */}
         <Route
           path="/recruiter"
           element={
-            role === "ADMIN" ? (
-              <RecruiterDashboard />
-            ) : (
-              <h2 style={{ padding: "20px" }}>Access Denied</h2>
-            )
+            role === "ADMIN"
+              ? <RecruiterDashboard />
+              : <h2 style={{ padding: "20px" }}>Access Denied</h2>
+          }
+        />
+
+        <Route
+          path="/users"
+          element={
+            role === "ADMIN"
+              ? <UsersPage />
+              : <h2 style={{ padding: "20px" }}>Access Denied</h2>
           }
         />
       </Routes>

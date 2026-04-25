@@ -13,7 +13,7 @@ function RecruiterDashboard() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await api.get("/jobs/my"); // ✅ USE API INSTANCE
+        const res = await api.get("/api/jobs/my"); // ✅ USE API INSTANCE
         console.log("Jobs:", res.data);
 
         setJobs(Array.isArray(res.data) ? res.data : []);
