@@ -1,0 +1,93 @@
+.navbar {
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* FULL WIDTH */
+.navbar-container {
+  width: 100%;
+  padding: 0 24px;
+}
+
+/* 🔥 MAIN LAYOUT */
+.navbar-content {
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+/* LOGO */
+.navbar-logo a {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+}
+
+/* 🔥 LINKS (Naukri style: next to logo) */
+.navbar-links {
+  display: flex;
+  gap: 30px;        /* spacing between Home Jobs Applications */
+  margin-left: 32px; /* space after logo */
+}
+
+/* LINKS */
+.nav-link {
+  font-size: 18px;
+  font-weight: 500;
+  color: #444;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.nav-link:hover {
+  color: #2563eb;
+}
+
+/* 🔥 RIGHT SIDE */
+.navbar-auth {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* LOGIN (outline style like Naukri) */
+.btn-login {
+  padding: 6px 14px;
+  border: 1px solid #2563eb;
+  border-radius: 20px;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-login:hover {
+  background: #2563eb;
+  color: white;
+}
+
+/* LOGOUT */
+.btn-logout {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background: #dc2626;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+}

@@ -1,77 +1,66 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import LoginPage from "./pages/LoginPage";
 import JobsPage from "./pages/JobsPage";
-import authService from "./services/authService";
 import JobDetails from "./pages/JobDetails";
 import MyApplications from "./pages/MyApplications";
 import RecruiterDashboard from "./pages/RecruiterDashboard";
 import CreateJob from "./pages/CreateJob";
 import UsersPage from "./pages/UsersPage";
+import HomePage from "./pages/HomePage"; // ✅ ADD THIS
+import authService from "./services/authService";
 import "./App.css";
 
 function App() {
-  const isAuthenticated = authService.isAuthenticated();
   const role = authService.getUserRole();
-
-  const handleLogout = () => {
-    authService.logout();
-    window.location.href = "/login";
-  };
 
   return (
     <Router>
-      <nav style={{ padding: "10px", backgroundColor: "#f0f0f0" }}>
-        <Link to="/" style={{ marginRight: "20px" }}>Home</Link>
-        <Link to="/jobs" style={{ marginRight: "20px" }}>Jobs</Link>
-        <Link to="/my-applications" style={{ marginRight: "20px" }}>My Applications</Link>
+      <Navbar />
 
-        {/* ✅ Only ADMIN sees these */}
-        {role === "ADMIN" && (
-          <>
-            <Link to="/recruiter" style={{ marginRight: "20px" }}>Recruiter</Link>
-            <Link to="/create-job" style={{ marginRight: "20px" }}>Create Job</Link>
-            <Link to="/users" style={{ marginRight: "20px" }}>Users</Link>
-          </>
-        )}
+      <main className="bg-gray-50 min-h-screen w-full">
+        <Routes>
+          {/* ✅ CLEAN HOME ROUTE */}
+          <Route path="/" element={<HomePage />} />
 
-        {isAuthenticated ? (
-          <button onClick={handleLogout} style={{ marginLeft: "20px" }}>
-            Logout
-          </button>
-        ) : (
-          <Link to="/login" style={{ marginLeft: "20px" }}>
-            Login
-          </Link>
-        )}
-      </nav>
+          <Route path="/jobs" element={<JobsPage />} />
+          <Route path="/jobs/:id" element={<JobDetails />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/my-applications" element={<MyApplications />} />
+          <Route path="/create-job" element={<CreateJob />} />
 
-      <Routes>
-        <Route path="/" element={<h1 style={{ padding: "20px" }}>Welcome to Job Portal</h1>} />
-        <Route path="/jobs" element={<JobsPage />} />
-        <Route path="/jobs/:id" element={<JobDetails />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/my-applications" element={<MyApplications />} />
-        <Route path="/create-job" element={<CreateJob />} />
+          {/* ✅ Protected Routes */}
+          <Route
+            path="/recruiter"
+            element={
+              role === "ADMIN" ? (
+                <RecruiterDashboard />
+              ) : (
+                <div className="w-full px-6 py-12">
+                  <h2 className="text-2xl font-bold text-red-600">
+                    Access Denied
+                  </h2>
+                </div>
+              )
+            }
+          />
 
-        {/* ✅ Protected Routes */}
-        <Route
-          path="/recruiter"
-          element={
-            role === "ADMIN"
-              ? <RecruiterDashboard />
-              : <h2 style={{ padding: "20px" }}>Access Denied</h2>
-          }
-        />
-
-        <Route
-          path="/users"
-          element={
-            role === "ADMIN"
-              ? <UsersPage />
-              : <h2 style={{ padding: "20px" }}>Access Denied</h2>
-          }
-        />
-      </Routes>
+          <Route
+            path="/users"
+            element={
+              role === "ADMIN" ? (
+                <UsersPage />
+              ) : (
+                <div className="w-full px-6 py-12">
+                  <h2 className="text-2xl font-bold text-red-600">
+                    Access Denied
+                  </h2>
+                </div>
+              )
+            }
+          />
+        </Routes>
+      </main>
     </Router>
   );
 }
