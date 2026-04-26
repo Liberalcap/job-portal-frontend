@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import authService from '../services/authService';
+import './Login.css';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -31,34 +32,98 @@ function LoginPage() {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px' }}>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <div style={{ marginBottom: '15px' }}>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            style={{ width: '100%', padding: '8px' }}
-          />
+    <div className="login-container">
+      <div className="login-wrapper">
+        {/* Hero Section */}
+        <div className="login-hero">
+          <h1>Welcome to Job Nest</h1>
+          <p>Your gateway to finding the perfect job or the perfect candidate. Start your journey today.</p>
+          
+          <div className="login-features">
+            <div className="feature-item">
+              <div className="feature-icon">🚀</div>
+              <div className="feature-content">
+                <h3>Quick & Easy</h3>
+                <p>Sign in seconds and start exploring opportunities</p>
+              </div>
+            </div>
+            
+            <div className="feature-item">
+              <div className="feature-icon">🔒</div>
+              <div className="feature-content">
+                <h3>Secure</h3>
+                <p>Your data is protected with enterprise-grade security</p>
+              </div>
+            </div>
+            
+            <div className="feature-item">
+              <div className="feature-icon">⭐</div>
+              <div className="feature-content">
+                <h3>Trusted</h3>
+                <p>Join thousands of professionals on Job Nest</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div style={{ marginBottom: '15px' }}>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            style={{ width: '100%', padding: '8px' }}
-          />
+
+        {/* Login Form */}
+        <div className="login-form-container">
+          <div className="login-form-header">
+            <h2>Sign In</h2>
+            <p>Access your Job Nest account</p>
+          </div>
+
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <label className="form-label">Email Address</label>
+              <div className="form-input-wrapper">
+                <span className="form-input-icon">✉️</span>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="form-input"
+                  placeholder="your@email.com"
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <div className="form-input-wrapper">
+                <span className="form-input-icon">🔐</span>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="form-input"
+                  placeholder="Enter your password"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="login-button"
+            >
+              {loading ? 'Signing in...' : 'Sign In'}
+            </button>
+          </form>
+
+          <div className="signup-link">
+            Don't have an account? <a href="#signup">Create one now</a>
+          </div>
         </div>
-        <button type="submit" disabled={loading} style={{ width: '100%', padding: '10px' }}>
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
