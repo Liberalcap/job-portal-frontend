@@ -2,14 +2,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import LoginPage from "./pages/LoginPage";
 import JobsPage from "./pages/JobsPage";
-import authService from "./services/authService";
 import JobDetails from "./pages/JobDetails";
 import MyApplications from "./pages/MyApplications";
 import RecruiterDashboard from "./pages/RecruiterDashboard";
 import CreateJob from "./pages/CreateJob";
 import UsersPage from "./pages/UsersPage";
+import HomePage from "./pages/HomePage"; // ✅ ADD THIS
+import authService from "./services/authService";
 import "./App.css";
-import "./pages/Home.css";
 
 function App() {
   const role = authService.getUserRole();
@@ -18,32 +18,28 @@ function App() {
     <Router>
       <Navbar />
 
-      <main className="bg-gray-50 min-h-screen">
+      <main className="bg-gray-50 min-h-screen w-full">
         <Routes>
-          <Route 
-            path="/" 
-            element={
-              <div className="home-container">
-                <h1 className="home-heading">Welcome to Job Nest</h1>
-                <p className="home-subtitle">Find your next opportunity or hire top talent</p>
-              </div>
-            } 
-          />
+          {/* ✅ CLEAN HOME ROUTE */}
+          <Route path="/" element={<HomePage />} />
+
           <Route path="/jobs" element={<JobsPage />} />
           <Route path="/jobs/:id" element={<JobDetails />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/my-applications" element={<MyApplications />} />
           <Route path="/create-job" element={<CreateJob />} />
 
-          {/* Protected Routes */}
+          {/* ✅ Protected Routes */}
           <Route
             path="/recruiter"
             element={
               role === "ADMIN" ? (
                 <RecruiterDashboard />
               ) : (
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                  <h2 className="text-2xl font-bold text-red-600">Access Denied</h2>
+                <div className="w-full px-6 py-12">
+                  <h2 className="text-2xl font-bold text-red-600">
+                    Access Denied
+                  </h2>
                 </div>
               )
             }
@@ -55,8 +51,10 @@ function App() {
               role === "ADMIN" ? (
                 <UsersPage />
               ) : (
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                  <h2 className="text-2xl font-bold text-red-600">Access Denied</h2>
+                <div className="w-full px-6 py-12">
+                  <h2 className="text-2xl font-bold text-red-600">
+                    Access Denied
+                  </h2>
                 </div>
               )
             }
