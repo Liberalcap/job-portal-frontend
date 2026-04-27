@@ -77,7 +77,6 @@ function RegisterPage() {
 
     await authService.register(registerData);
 
-    // 🔥 IMPORTANT FIX: remove token so user is NOT logged in
     localStorage.removeItem("token");
     localStorage.removeItem("role");
 
