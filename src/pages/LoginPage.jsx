@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import authService from '../services/authService';
+import { Link } from "react-router-dom";
 import './Login.css';
 
 function LoginPage() {
@@ -120,7 +121,8 @@ function LoginPage() {
           </form>
 
           <div className="signup-link">
-            Don't have an account? <a href="#signup">Create one now</a>
+            Don't have an account? 
+            <Link to="/register"> Create one now</Link>
           </div>
         </div>
       </div>

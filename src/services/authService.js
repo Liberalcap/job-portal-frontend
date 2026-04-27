@@ -3,15 +3,22 @@ import api from "./api";
 const authService = {
   // Register
   register: async (userData) => {
+  try {
     const response = await api.post("/api/auth/register", userData);
 
-    if (response.data.token) {
-      localStorage.setItem("authToken", response.data.token);
-      localStorage.setItem("userRole", response.data.role);
-    }
+    const { token, role } = response.data;
+
+    // 🔥 store token immediately
+    localStorage.setItem("authToken", token);
+    localStorage.setItem("userRole", role);
 
     return response.data;
-  },
+
+  } catch (error) {
+    console.error("Register error:", error);
+    throw error;
+  }
+},
 
   // Login
   login: async (credentials) => {

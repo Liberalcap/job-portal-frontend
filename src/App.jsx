@@ -9,6 +9,7 @@ import CreateJob from "./pages/CreateJob";
 import UsersPage from "./pages/UsersPage";
 import HomePage from "./pages/HomePage"; // ✅ ADD THIS
 import authService from "./services/authService";
+import RegisterPage from "./pages/RegisterPage";
 import "./App.css";
 
 function App() {
@@ -22,12 +23,13 @@ function App() {
         <Routes>
           {/* ✅ CLEAN HOME ROUTE */}
           <Route path="/" element={<HomePage />} />
-
+          
           <Route path="/jobs" element={<JobsPage />} />
           <Route path="/jobs/:id" element={<JobDetails />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/my-applications" element={<MyApplications />} />
           <Route path="/create-job" element={<CreateJob />} />
+          <Route path="/register" element={<RegisterPage />} />
 
           {/* ✅ Protected Routes */}
           <Route
