@@ -62,36 +62,43 @@ function RegisterPage() {
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-    setSuccessMessage("Registration successful! Please login.");
-    navigate("/login");
+  e.preventDefault();
+  setSuccessMessage("");
 
-    if (!validateForm()) {
-      return;
-    }
+  // ✅ Validate first
+  if (!validateForm()) {
+    return;
+  }
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-      const { confirmPassword, ...registerData } = formData;
-      await authService.register(registerData);
+  try {
+    const { confirmPassword, ...registerData } = formData;
 
-      setSuccessMessage("Registration successful! Redirecting...");
-      
-      // Redirect after 1.5 seconds
-      setTimeout(() => {
-        navigate("/login");
-      }, 1500);
+    await authService.register(registerData);
 
-    } catch (err) {
-      setErrors(prev => ({
-        ...prev,
-        submit: err.response?.data?.message || "Registration failed. Please try again."
-      }));
-    } finally {
-      setLoading(false);
-    }
-  };
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+
+    setSuccessMessage("Registration successful! Redirecting to login...");
+
+    // Small delay for UX
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
+
+  } catch (err) {
+    setErrors(prev => ({
+      ...prev,
+      submit:
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        "Registration failed. Please try again."
+    }));
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="register-container">
