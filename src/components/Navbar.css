@@ -27,11 +27,11 @@
   text-decoration: none;
 }
 
-/* 🔥 LINKS (Naukri style: next to logo) */
+/* 🔥 LINKS */
 .navbar-links {
   display: flex;
-  gap: 30px;        /* spacing between Home Jobs Applications */
-  margin-left: 32px; /* space after logo */
+  gap: 30px;
+  margin-left: 32px;
 }
 
 /* LINKS */
@@ -55,7 +55,7 @@
   gap: 12px;
 }
 
-/* LOGIN (outline style like Naukri) */
+/* LOGIN */
 .btn-login {
   padding: 6px 14px;
   border: 1px solid #2563eb;
@@ -64,9 +64,27 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
+  transition: 0.3s;
 }
 
 .btn-login:hover {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-register {
+  padding: 6px 14px;
+  border: 1px solid #2563eb;
+  border-radius: 20px;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.btn-register:hover {
   background: #2563eb;
   color: white;
 }
@@ -79,10 +97,16 @@
   color: white;
   border: none;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .btn-logout:hover {
   background: #dc2626;
+}
+
+/* ✨ OPTIONAL POLISH (makes it look premium) */
+.navbar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* MOBILE */

@@ -51,15 +51,21 @@ function Navbar() {
           </div>
 
           {/* Auth Button */}
+          
           <div className="navbar-auth">
             {isAuthenticated ? (
               <button onClick={handleLogout} className="btn-logout">
                 Logout
               </button>
             ) : (
-              <Link to="/login" className="btn-login">
-                Login
-              </Link>
+              <>
+                <Link to="/login" className="btn-login">
+                  Login
+                </Link>
+                <Link to="/register" className="btn-register">
+                  Register
+                </Link>
+              </>
             )}
           </div>
         </div>
