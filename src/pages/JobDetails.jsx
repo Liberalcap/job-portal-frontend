@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import jobService from "../services/jobService";
+import authService from "../services/authService";
 
 function JobDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -12,6 +14,7 @@ function JobDetails() {
   const [applied, setApplied] = useState(false);
   const [message, setMessage] = useState("");
 
+  // 🔥 Fetch job details
   useEffect(() => {
     api.get(`/api/jobs/${id}`)
       .then((res) => {
@@ -26,7 +29,30 @@ function JobDetails() {
       });
   }, [id]);
 
+  // 🔥 NEW: Check if already applied
+  useEffect(() => {
+    if (authService.isAuthenticated()) {
+      jobService.hasApplied(id)
+        .then((res) => {
+          if (res === true) {
+            setApplied(true);
+          }
+        })
+        .catch((err) => {
+          console.error("Check applied error:", err);
+        });
+    }
+  }, [id]);
+
   const handleApply = async () => {
+
+    // 🔒 Check login BEFORE API call
+    if (!authService.isAuthenticated()) {
+      setMessage("⚠️ Please login to apply for this job");
+      navigate("/login");
+      return;
+    }
+
     try {
       const res = await jobService.applyToJob(id);
 
@@ -37,9 +63,14 @@ function JobDetails() {
     } catch (err) {
       console.error("Apply error:", err);
 
-      if (err.response?.status === 400) {
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        setMessage("⚠️ Session expired. Please login again.");
+        navigate("/login");
+
+      } else if (err.response?.status === 400) {
         setApplied(true);
         setMessage("⚠️ You already applied for this job");
+
       } else {
         setMessage("❌ Something went wrong. Try again.");
       }
@@ -48,7 +79,7 @@ function JobDetails() {
 
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
         </div>
@@ -58,7 +89,7 @@ function JobDetails() {
 
   if (error) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg">
           {error}
         </div>
@@ -67,7 +98,7 @@ function JobDetails() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 py-12">
       <div className="bg-white rounded-lg shadow-lg p-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-6">{job.title}</h1>
 
@@ -89,7 +120,7 @@ function JobDetails() {
 
         <div className="mb-8">
           <label className="block text-sm font-medium text-gray-600 mb-2">Description</label>
-          <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{job.description}</p>
+          <p className="text-gray-700 whitespace-pre-wrap">{job.description}</p>
         </div>
 
         {message && (
@@ -111,7 +142,11 @@ function JobDetails() {
               : "bg-blue-600 text-white hover:bg-blue-700"
           }`}
         >
-          {applied ? "Applied" : "Apply Now"}
+          {applied
+            ? "Applied"
+            : authService.isAuthenticated()
+              ? "Apply Now"
+              : "Login to Apply"}
         </button>
       </div>
     </div>
