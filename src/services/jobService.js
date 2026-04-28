@@ -40,10 +40,16 @@ const jobService = {
     return response.data;
   },
 
-  // ✅ APPLY TO JOB (correct)
+  // ✅ APPLY TO JOB
   applyToJob: async (jobId) => {
     const response = await api.post(`/api/applications/${jobId}`);
     return response.data;
+  },
+
+  // 🔥 NEW: CHECK IF USER ALREADY APPLIED
+  hasApplied: async (jobId) => {
+    const response = await api.get(`/api/applications/check/${jobId}`);
+    return response.data; // true / false
   },
 };
 
