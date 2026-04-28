@@ -30,9 +30,11 @@ function Navbar() {
             <Link to="/jobs" className="nav-link">
               Jobs
             </Link>
+            {isAuthenticated && (
             <Link to="/my-applications" className="nav-link">
               Applications
             </Link>
+            )}
 
             {/* Admin Links */}
             {role === "ADMIN" && (
