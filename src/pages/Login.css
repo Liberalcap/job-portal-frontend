@@ -195,14 +195,17 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  background: #7c3aed;
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
   color: white;
   transition: all 0.3s ease;
   margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
 }
 
 .login-button:hover:not(:disabled) {
-  background: #6d28d9;
+  background: linear-gradient(135deg, #357ABD 0%, #2A5A94 100%);
+  box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+  transform: translateY(-2px);
 }
 
 .login-button:disabled {
@@ -227,7 +230,7 @@
 }
 
 .signup-link a {
-  color: #7c3aed;
+  color: #4A90E2;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
@@ -235,7 +238,7 @@
 }
 
 .signup-link a:hover {
-  color: #6d28d9;
+  color: #357ABD;
 }
 
 @media (max-width: 768px) {
