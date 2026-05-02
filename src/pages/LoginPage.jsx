@@ -6,6 +6,7 @@ import './Login.css';
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -60,7 +61,7 @@ function LoginPage() {
           </button>
           <button className="social-button apple-button" type="button">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.05 13.5c-.91 0-1.64.58-2.05 1.34.64.65 1.04 1.54 1.04 2.55 0 2.08-1.71 3.75-3.8 3.75-1.04 0-1.95-.41-2.59-1.05-.5.74-1.3 1.23-2.19 1.23-2.08 0-3.75-1.71-3.75-3.8 0-2.08 1.67-3.75 3.75-3.75.9 0 1.7.5 2.19 1.23.64-.65 1.55-1.05 2.59-1.05 1.01 0 1.91.37 2.59 1.01.4-.76 1.13-1.36 2.05-1.36 2.08 0 3.75 1.67 3.75 3.75 0 2.08-1.67 3.75-3.75 3.75z"/>
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.3-3.14-2.53C4.25 17.12 3.5 13.63 5.02 11.25c.75-1.27 2.3-2.08 3.89-2.1 1.3-.02 2.52.73 3.38.73.86 0 2.18-.88 3.68-.74.61.02 2.37.27 3.5 2.02-.03.02-1.91 1.16-1.88 3.47.02 2.85 2.47 3.83 2.51 3.85-.13.03-.84 1.65-2.87 2.75z M12.03 7.25c-.23-1.86 1.46-3.46 3.27-3.64.15 1.95-1.82 3.53-3.27 3.64z"/>
             </svg>
             Apple
           </button>
@@ -87,14 +88,30 @@ function LoginPage() {
             <label className="form-label">Password</label>
             <div className="password-input-wrapper">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="form-input"
                 placeholder="Enter your password"
               />
-              <button type="button" className="password-toggle">👁️</button>
+              <button 
+                type="button" 
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                    <line x1="1" y1="1" x2="23" y2="23"/>
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
 
