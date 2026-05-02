@@ -1,3 +1,14 @@
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .login-container {
   width: 100%;
   min-height: 100vh;
@@ -12,12 +23,13 @@
 .login-form-container {
   background: #ffffff;
   border-radius: 8px;
-  padding: 2.5rem 2rem;
+  padding: 2rem 1.5rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 380px;
+  max-width: 340px;
   display: flex;
   flex-direction: column;
+  animation: slideUp 0.4s ease-out;
 }
 
 .login-form-header {
@@ -142,7 +154,7 @@
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  color: #999999;
+  color: #1a1a1a;
   padding: 0;
   display: flex;
   align-items: center;
