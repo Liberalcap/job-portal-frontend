@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import applicationService from "../services/applicationService";
+import "./MyApplications.css";
 
 function MyApplications() {
   const [applications, setApplications] = useState([]);
@@ -18,49 +19,95 @@ function MyApplications() {
       });
   }, []);
 
+  const getStatusClass = (status) => {
+    switch(status) {
+      case "ACCEPTED":
+        return "status-accepted";
+      case "REJECTED":
+        return "status-rejected";
+      case "PENDING":
+        return "status-pending";
+      default:
+        return "status-other";
+    }
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: '2-digit', month: 'short' });
+  };
+
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="applications-container">
+        <div className="applications-wrapper">
+          <div className="applications-loading">
+            <div className="spinner"></div>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mb-8">
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">My Applications</h2>
-        <p className="text-gray-600">{applications.length} application{applications.length !== 1 ? 's' : ''}</p>
-      </div>
+    <div className="applications-container">
+      <div className="applications-wrapper">
+        <div className="applications-header">
+          <h1>Opportunities</h1>
+        </div>
 
-      {applications.length === 0 ? (
-        <div className="bg-white rounded-lg shadow p-12 text-center">
-          <p className="text-gray-600 text-lg">No applications yet</p>
-        </div>
-      ) : (
-        <div className="grid gap-4">
-          {applications.map((app) => (
-            <div
-              key={app.id}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-blue-600"
-            >
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-xl font-bold text-gray-900">{app.jobTitle}</h3>
-                <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                  app.status === "ACCEPTED" ? "bg-green-100 text-green-800" :
-                  app.status === "REJECTED" ? "bg-red-100 text-red-800" :
-                  app.status === "PENDING" ? "bg-yellow-100 text-yellow-800" :
-                  "bg-gray-100 text-gray-800"
-                }`}>
-                  {app.status}
-                </span>
-              </div>
+        {applications.length === 0 ? (
+          <div className="applications-empty">
+            <p>No applications yet. Start applying to opportunities now!</p>
+          </div>
+        ) : (
+          <div className="applications-grid">
+            <div className="table-header">
+              <div>Opportunities</div>
+              <div>Applicants</div>
+              <div>Application Status</div>
+              <div></div>
+              <div>View Application</div>
             </div>
-          ))}
-        </div>
-      )}
+
+            {applications.map((app) => (
+              <div key={app.id} className="application-card">
+                <div className="card-header">
+                  <div className="card-title">
+                    <a href="#" className="card-title-link">
+                      {app.jobTitle}
+                      <span className="external-icon">↗</span>
+                    </a>
+                  </div>
+                  <div className="card-company">{app.companyName}</div>
+                  <div className="card-date">Applied on {formatDate(app.appliedDate)}</div>
+                </div>
+
+                <div className="card-info-group">
+                  <div className="card-info-label">Applicants</div>
+                  <div className="card-info-value">{app.applicantCount || 0}</div>
+                </div>
+
+                <div className="card-info-group">
+                  <div className="card-info-label">Status</div>
+                  <span className={`status-badge ${getStatusClass(app.status)}`}>
+                    {app.status}
+                  </span>
+                </div>
+
+                <div className="card-info-group"></div>
+
+                <div className="application-action">
+                  <button className="action-icon" title="View details">
+                    📋
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
