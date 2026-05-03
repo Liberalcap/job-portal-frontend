@@ -3,9 +3,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  height: 100vh;
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -14,10 +16,10 @@
 /* BOX */
 .register-box {
   background: white;
-  padding: 50px;
+  padding: 1.5rem 1.25rem;
   border-radius: 12px;
   width: 100%;
-  max-width: 450px;
+  max-width: 340px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
   animation: slideUp 0.4s ease-out;
 }
@@ -35,40 +37,41 @@
 
 /* HEADER */
 .register-header {
-  margin-bottom: 30px;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
 .register-header h1 {
-  font-size: 28px;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #1f2937;
-  margin-bottom: 8px;
+  margin-bottom: 0.25rem;
   letter-spacing: -0.5px;
 }
 
 .register-header p {
-  font-size: 14px;
+  font-size: 0.75rem;
   color: #6b7280;
   margin: 0;
+  line-height: 1.4;
 }
 
 /* FORM */
 .register-form {
-  margin-top: 20px;
+  margin-top: 1.5rem;
 }
 
 /* FORM GROUP */
 .form-group {
-  margin-bottom: 22px;
+  margin-bottom: 0.85rem;
 }
 
 .form-group label {
   display: block;
-  font-size: 13px;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #1f2937;
-  margin-bottom: 8px;
+  margin-bottom: 0.35rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -76,10 +79,10 @@
 /* INPUTS */
 .register-box input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 0.6rem 0.85rem;
   border: 1.5px solid #e5e7eb;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 0.875rem;
   background-color: #f9fafb;
   transition: all 0.3s ease;
   box-sizing: border-box;
@@ -109,18 +112,18 @@
 /* ERROR MESSAGE */
 .error-message {
   display: block;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #ef4444;
-  margin-top: 6px;
+  margin-top: 0.375rem;
   font-weight: 500;
 }
 
 /* ALERTS */
 .alert {
-  padding: 12px 14px;
+  padding: 1rem 1rem;
   border-radius: 8px;
-  margin-bottom: 20px;
-  font-size: 13px;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
   font-weight: 500;
   animation: slideDown 0.3s ease-out;
 }
@@ -151,16 +154,16 @@
 /* BUTTON */
 .register-btn {
   width: 100%;
-  padding: 12px 16px;
+  padding: 0.7rem 1rem;
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 10px;
+  margin-top: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
@@ -184,26 +187,28 @@
 /* LOGIN LINK */
 .login-link {
   text-align: center;
-  margin-top: 24px;
-  padding-top: 24px;
+  margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid #e5e7eb;
 }
 
 .login-link p {
-  font-size: 14px;
-  color: #6b7280;
+  font-size: 0.8rem;
+  color: #1a1a1a;
   margin: 0;
 }
 
 .login-link a {
-  color: #2563eb;
+  color: #4A90E2;
   text-decoration: none;
   font-weight: 600;
+  font-size: 0.8rem;
   transition: color 0.3s ease;
+  margin-left: 0.25rem;
 }
 
 .login-link a:hover {
-  color: #1d4ed8;
+  color: #357ABD;
   text-decoration: underline;
 }
 
