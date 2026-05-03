@@ -3,6 +3,24 @@
   overflow-x: hidden;
 }
 
+@keyframes circle-converge-top {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-200px, 150px);
+  }
+}
+
+@keyframes circle-converge-bottom {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(200px, -150px);
+  }
+}
+
 /* Hero Section */
 .hero-section {
   background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
@@ -22,6 +40,19 @@
   height: 600px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
+  animation: circle-converge-top 1.8s ease-in-out forwards;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -60%;
+  left: -30%;
+  width: 700px;
+  height: 700px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  animation: circle-converge-bottom 1.8s ease-in-out forwards;
 }
 
 .hero-content {
