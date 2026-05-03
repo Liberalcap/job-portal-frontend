@@ -9,6 +9,42 @@
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes circle-converge-top {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-150px, 100px);
+  }
+}
+
+@keyframes circle-converge-bottom {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(150px, -120px);
+  }
+}
+
 .login-container {
   width: 100%;
   height: 100vh;
@@ -18,7 +54,35 @@
   background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   padding: 20px;
   box-sizing: border-box;
-  overflow: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background decorative elements */
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: circle-converge-top 1.5s ease-in-out forwards;
+  pointer-events: none;
+}
+
+.login-container::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  animation: circle-converge-bottom 1.5s ease-in-out forwards;
+  pointer-events: none;
 }
 
 .login-form-container {
@@ -31,6 +95,8 @@
   display: flex;
   flex-direction: column;
   animation: slideUp 0.4s ease-out;
+  position: relative;
+  z-index: 10;
 }
 
 .login-form-header {
