@@ -79,12 +79,15 @@
 
 /* BOX */
 .register-box {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 1.5rem 1.25rem;
-  border-radius: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
   width: 100%;
   max-width: 340px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.5);
   animation: slideUp 0.4s ease-out;
   position: relative;
   z-index: 10;
@@ -146,10 +149,12 @@
 .register-box input {
   width: 100%;
   padding: 0.6rem 0.85rem;
-  border: 1.5px solid #e5e7eb;
-  border-radius: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
   font-size: 0.875rem;
-  background-color: #f9fafb;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   transition: all 0.3s ease;
   box-sizing: border-box;
   color: #1f2937;
@@ -158,8 +163,8 @@
 .register-box input:focus {
   outline: none;
   border-color: #2563eb;
-  background-color: white;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.2);
 }
 
 .register-box input::placeholder {
@@ -224,7 +229,7 @@
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -232,13 +237,13 @@
   margin-top: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3), 0 0 20px rgba(37, 99, 235, 0.1);
 }
 
 .register-btn:hover:not(:disabled) {
   background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4), 0 0 30px rgba(37, 99, 235, 0.15);
 }
 
 .register-btn:active:not(:disabled) {
