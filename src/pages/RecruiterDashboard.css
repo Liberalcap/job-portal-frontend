@@ -1,0 +1,359 @@
+@keyframes circle-converge-top {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-200px, 150px);
+  }
+}
+
+@keyframes circle-converge-bottom {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(200px, -150px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dashboard-container {
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f8fafc 0%, #ffffff 50%);
+  padding: 0;
+}
+
+.dashboard-wrapper {
+  width: 100%;
+  padding: 0;
+}
+
+/* HEADER - Hero Style Full Width */
+.dashboard-header {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  padding: 4rem 2rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: circle-converge-top 1.8s ease-in-out forwards;
+  pointer-events: none;
+}
+
+.dashboard-header::after {
+  content: '';
+  position: absolute;
+  bottom: -60%;
+  left: -30%;
+  width: 700px;
+  height: 700px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  animation: circle-converge-bottom 1.8s ease-in-out forwards;
+  pointer-events: none;
+}
+
+.dashboard-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
+  line-height: 1.2;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* CONTENT WRAPPER */
+.dashboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ERROR MESSAGE */
+.dashboard-error {
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+/* MAIN GRID */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+/* JOBS SIDEBAR */
+.dashboard-jobs-section {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  box-shadow: 0 10px 40px rgba(37, 99, 235, 0.1);
+  height: fit-content;
+}
+
+.dashboard-jobs-section h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 1.5rem 0;
+}
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.job-button {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.job-button.inactive {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.job-button.inactive:hover {
+  background: #e5e7eb;
+}
+
+.job-button.active {
+  background: #2563eb;
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.jobs-empty {
+  color: #6b7280;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.95rem;
+}
+
+/* APPLICATIONS SECTION */
+.dashboard-applications-section {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  box-shadow: 0 10px 40px rgba(37, 99, 235, 0.1);
+}
+
+.dashboard-applications-section h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 1.5rem 0;
+}
+
+.dashboard-select-job {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #6b7280;
+  font-size: 1.05rem;
+}
+
+/* LOADING STATE */
+.dashboard-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(37, 99, 235, 0.1);
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* EMPTY APPLICATIONS */
+.dashboard-no-applications {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #6b7280;
+  font-size: 1.05rem;
+}
+
+/* APPLICATIONS LIST */
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.application-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.application-item:hover {
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+}
+
+.application-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.application-info {
+  flex: 1;
+}
+
+.application-email {
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.25rem 0;
+}
+
+.application-job {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.status-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-accepted {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.application-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.action-button {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-accept {
+  background: #16a34a;
+  color: white;
+}
+
+.btn-accept:hover:not(:disabled) {
+  background: #15803d;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+.btn-accept:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-reject {
+  background: #dc2626;
+  color: white;
+}
+
+.btn-reject:hover:not(:disabled) {
+  background: #b91c1c;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.btn-reject:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header h1 {
+    font-size: 2rem;
+  }
+
+  .dashboard-jobs-section {
+    order: 2;
+  }
+
+  .dashboard-applications-section {
+    order: 1;
+  }
+
+  .application-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .application-actions {
+    flex-direction: column;
+  }
+}

@@ -16,7 +16,7 @@
 .navbar-content {
   display: flex;
   align-items: center;
-  height: 64px;
+  height: 72px;
 }
 
 /* LOGO */
@@ -30,8 +30,10 @@
 /* 🔥 LINKS */
 .navbar-links {
   display: flex;
-  gap: 30px;
+  gap: 16px;
   margin-left: 32px;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 /* LINKS */
@@ -41,6 +43,7 @@
   color: #444;
   text-decoration: none;
   transition: 0.2s;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
