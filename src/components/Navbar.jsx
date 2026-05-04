@@ -43,7 +43,7 @@ function Navbar() {
                   Dashboard
                 </Link>
                 <Link to="/create-job" className="nav-link">
-                  Create Job
+                  Post Job
                 </Link>
                 <Link to="/users" className="nav-link">
                   Users

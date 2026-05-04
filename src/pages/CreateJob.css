@@ -1,0 +1,231 @@
+@keyframes circle-converge-top {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-200px, 150px);
+  }
+}
+
+@keyframes circle-converge-bottom {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(200px, -150px);
+  }
+}
+
+.create-job-container {
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f8fafc 0%, #ffffff 50%);
+  padding: 0;
+}
+
+.create-job-wrapper {
+  width: 100%;
+  padding: 0;
+}
+
+/* HEADER - Hero Style Full Width */
+.create-job-header {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  padding: 4rem 2rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.create-job-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: circle-converge-top 1.8s ease-in-out forwards;
+  pointer-events: none;
+}
+
+.create-job-header::after {
+  content: '';
+  position: absolute;
+  bottom: -60%;
+  left: -30%;
+  width: 700px;
+  height: 700px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  animation: circle-converge-bottom 1.8s ease-in-out forwards;
+  pointer-events: none;
+}
+
+.create-job-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
+  line-height: 1.2;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-job-header p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 1rem 0 0 0;
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* CONTENT WRAPPER */
+.create-job-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* FORM CARD */
+.create-job-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  box-shadow: 0 10px 40px rgba(37, 99, 235, 0.1);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* MESSAGES */
+.success-message {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #166534;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+}
+
+.error-message {
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+}
+
+/* FORM */
+.create-job-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-input,
+.form-textarea {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #9ca3af;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+/* SUBMIT BUTTON */
+.submit-button {
+  padding: 0.875rem 1.5rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .create-job-header h1 {
+    font-size: 2rem;
+  }
+
+  .create-job-header p {
+    font-size: 1rem;
+  }
+
+  .create-job-card {
+    padding: 1.5rem;
+  }
+
+  .create-job-content {
+    padding: 0 1rem 1rem;
+  }
+}
