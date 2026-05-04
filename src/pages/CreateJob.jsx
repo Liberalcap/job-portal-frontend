@@ -72,7 +72,7 @@ function CreateJob() {
                 <input
                   type="text"
                   name="title"
-                  placeholder="e.g., Senior React Developer"
+                  placeholder="e.g., Software Developer"
                   value={job.title}
                   onChange={handleChange}
                   required
@@ -85,7 +85,7 @@ function CreateJob() {
                 <input
                   type="text"
                   name="company"
-                  placeholder="e.g., Acme Corp"
+                  placeholder="e.g., IBM"
                   value={job.company}
                   onChange={handleChange}
                   required
@@ -98,7 +98,7 @@ function CreateJob() {
                 <input
                   type="text"
                   name="location"
-                  placeholder="e.g., New York, NY"
+                  placeholder="e.g., Mumbai, India"
                   value={job.location}
                   onChange={handleChange}
                   required
@@ -111,7 +111,7 @@ function CreateJob() {
                 <input
                   type="text"
                   name="salary"
-                  placeholder="e.g., $80,000 - $120,000"
+                  placeholder="e.g., ₹80,000 - ₹120,000"
                   value={job.salary}
                   onChange={handleChange}
                   required
