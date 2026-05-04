@@ -54,7 +54,7 @@ function MyApplications() {
     <div className="applications-container">
       <div className="applications-wrapper">
         <div className="applications-header">
-          <h1>Opportunities</h1>
+          <h1>Applications</h1>
         </div>
 
         {applications.length === 0 ? (
@@ -64,7 +64,7 @@ function MyApplications() {
         ) : (
           <div className="applications-grid">
             <div className="table-header">
-              <div>Opportunities</div>
+              <div>Applications</div>
               <div>Applicants</div>
               <div>Application Status</div>
               <div></div>
