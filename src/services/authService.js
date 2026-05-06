@@ -72,6 +72,22 @@ const authService = {
   isAuthenticated: () => {
     return !!localStorage.getItem("authToken");
   },
+
+  // Forgot Password - Request reset link
+  forgotPassword: async (email) => {
+    const response = await api.post("/api/auth/forgot-password", { email });
+    return response.data;
+  },
+
+  // Reset Password - Reset with email
+  resetPassword: async (token, newPassword) => {
+  const response = await api.post("/api/auth/reset-password", {
+    token,
+    newPassword,
+  });
+
+  return response.data;
+},
 };
 
 export default authService;
