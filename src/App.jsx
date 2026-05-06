@@ -8,8 +8,10 @@ import RecruiterDashboard from "./pages/RecruiterDashboard";
 import CreateJob from "./pages/CreateJob";
 import UsersPage from "./pages/UsersPage";
 import HomePage from "./pages/HomePage"; // ✅ ADD THIS
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import authService from "./services/authService";
 import RegisterPage from "./pages/RegisterPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import "./App.css";
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
           <Route path="/jobs" element={<JobsPage />} />
           <Route path="/jobs/:id" element={<JobDetails />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/my-applications" element={<MyApplications />} />
           <Route path="/create-job" element={<CreateJob />} />
           <Route path="/register" element={<RegisterPage />} />
@@ -60,6 +63,11 @@ function App() {
                 </div>
               )
             }
+          />
+
+          <Route
+            path="/reset-password/:token"
+            element={<ResetPasswordPage />}
           />
         </Routes>
       </main>
