@@ -28,6 +28,41 @@ export function JobsListSkeleton() {
   );
 }
 
+export function JobDetailsSkeleton() {
+  return (
+    <div className="job-details-skeleton">
+      <SkeletonBox width="70%" height="48px" className="mb-6" />
+      
+      <div className="details-grid mb-8">
+        <div>
+          <SkeletonBox width="30%" height="16px" className="mb-2" />
+          <SkeletonBox width="80%" height="24px" />
+        </div>
+        <div>
+          <SkeletonBox width="30%" height="16px" className="mb-2" />
+          <SkeletonBox width="70%" height="24px" />
+        </div>
+      </div>
+
+      <div className="mb-8">
+        <SkeletonBox width="20%" height="16px" className="mb-2" />
+        <SkeletonBox width="60%" height="32px" />
+      </div>
+
+      <div className="mb-8">
+        <SkeletonBox width="20%" height="16px" className="mb-4" />
+        <SkeletonBox width="100%" height="16px" className="mb-2" />
+        <SkeletonBox width="100%" height="16px" className="mb-2" />
+        <SkeletonBox width="90%" height="16px" className="mb-2" />
+        <SkeletonBox width="100%" height="16px" className="mb-2" />
+        <SkeletonBox width="70%" height="16px" />
+      </div>
+
+      <SkeletonBox width="100%" height="48px" />
+    </div>
+  );
+}
+
 export function HeroSkeleton() {
   return (
     <div className="hero-skeleton">

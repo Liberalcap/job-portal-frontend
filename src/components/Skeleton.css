@@ -63,6 +63,20 @@
   padding: 20px;
 }
 
+/* Job Details Skeleton */
+.job-details-skeleton {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
 /* Hero Skeleton */
 .hero-skeleton {
   padding: 60px 20px;
