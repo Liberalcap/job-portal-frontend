@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLoading } from "../context/LoadingContext";
+import { HeroSkeleton, StatsSkeleton, CategorySkeleton } from "../components/Skeleton";
 import "./Home.css";
 
 function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const { isLoading } = useLoading();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -12,6 +15,24 @@ function HomePage() {
       navigate(`/jobs?search=${searchQuery}`);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="home-container">
+        <section className="hero-section">
+          <div className="hero-content">
+            <HeroSkeleton />
+          </div>
+        </section>
+        <section className="stats-section">
+          <StatsSkeleton />
+        </section>
+        <section className="featured-section">
+          <CategorySkeleton />
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="home-container">
