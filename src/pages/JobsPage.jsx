@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import jobService from '../services/jobService';
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLoading } from '../context/LoadingContext';
+import { JobsListSkeleton } from '../components/Skeleton';
 import './JobsPage.css';
 
 function JobsPage() {
@@ -9,6 +11,7 @@ function JobsPage() {
   const [error, setError] = useState('');
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search');
+  const { isLoading: isNavigating } = useLoading();
 
   const navigate = useNavigate();
 
@@ -43,14 +46,17 @@ function JobsPage() {
     fetchJobs();
   }, []);
 
-  if (loading) {
+  if (loading || isNavigating) {
     return (
       <div className="jobs-page-container">
-        <div className="loading-container">
-          <div className="text-center">
-            <div className="spinner"></div>
-            <p className="loading-text">Loading jobs...</p>
+        <div className="jobs-header">
+          <div className="jobs-header-content">
+            <h1>Available Jobs</h1>
+            <p>Loading job listings...</p>
           </div>
+        </div>
+        <div className="jobs-content">
+          <JobsListSkeleton />
         </div>
       </div>
     );

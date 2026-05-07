@@ -2,10 +2,15 @@ import { useLoading } from '../context/LoadingContext';
 import './LoadingBar.css';
 
 function LoadingBar() {
-  const { isLoading } = useLoading();
+  const { isLoading, progress } = useLoading();
 
   return (
-    <div className={`loading-bar ${isLoading ? 'active' : ''}`}></div>
+    <div className={`loading-bar-container ${isLoading ? 'active' : ''}`}>
+      <div 
+        className="loading-bar"
+        style={{ width: `${progress}%` }}
+      ></div>
+    </div>
   );
 }
 
