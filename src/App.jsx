@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { LoadingProvider } from "./context/LoadingContext";
 import Navbar from "./components/Navbar";
+import LoadingBar from "./components/LoadingBar";
 import LoginPage from "./pages/LoginPage";
 import JobsPage from "./pages/JobsPage";
 import JobDetails from "./pages/JobDetails";
@@ -19,7 +21,9 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      <LoadingProvider>
+        <LoadingBar />
+        <Navbar />
 
       <main className="bg-gray-50 min-h-screen w-full">
         <Routes>
@@ -71,6 +75,7 @@ function App() {
           />
         </Routes>
       </main>
+      </LoadingProvider>
     </Router>
   );
 }
