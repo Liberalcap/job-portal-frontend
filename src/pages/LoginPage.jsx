@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import authService from '../services/authService';
 import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './Login.css';
 
 function LoginPage() {
+
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,7 +25,7 @@ function LoginPage() {
       console.log('Attempting login with:', { email });
       const response = await authService.login({ email, password });
       console.log('Login successful:', response);
-      window.location.href = '/';
+      navigate("/");
     } catch (err) {
       console.error('Login error:', err);
       const errorMessage = 
