@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import "./Navbar.css";
@@ -11,7 +10,7 @@ function Navbar() {
   const handleLogout = () => {
     authService.logout();
     navigate("/login");
-  };
+  };  
 
   return (
     <nav className="navbar">
