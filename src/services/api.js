@@ -37,7 +37,7 @@ api.interceptors.response.use(
     // 🔐 Handle unauthorized (fix redirect)
     if (status === 401 && !window.location.pathname.includes("/login")) {
       localStorage.removeItem("authToken");
-      window.location.href = "/login"; // ✅ FIXED
+      window.location.replace("/login");
     }
 
     // ⚠️ Handle forbidden

@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import "./Navbar.css";
 
 function Navbar() {
   const isAuthenticated = authService.isAuthenticated();
   const role = authService.getUserRole();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     authService.logout();
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   return (
