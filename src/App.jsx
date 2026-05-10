@@ -42,7 +42,7 @@ function App() {
           <Route
             path="/recruiter"
             element={
-              role === "ROLE_RECRUITER" ? (
+              role === "RECRUITER" ? (
                 <RecruiterDashboard />
               ) : (
                 <div className="w-full px-6 py-12">
@@ -57,7 +57,7 @@ function App() {
           <Route
             path="/users"
             element={
-              role === "ROLE_RECRUITER" ? (
+              role === "RECRUITER" ? (
                 <UsersPage />
               ) : (
                 <div className="w-full px-6 py-12">
