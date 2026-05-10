@@ -4,7 +4,7 @@ import "./Navbar.css";
 
 function Navbar() {
   const isAuthenticated = authService.isAuthenticated();
-  const role = authService.getUserRole();
+  const role = localStorage.getItem("userRole")?.replace("ROLE_", "");
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -37,8 +37,8 @@ function Navbar() {
             </Link>
             )}
 
-            {/* Admin Links */}
-            {role === "ROLE_RECRUITER" && (
+            {/* Recruiter Links */}
+            {role === "RECRUITER" && (
               <>
                 <Link to="/recruiter" className="nav-link">
                   Dashboard
