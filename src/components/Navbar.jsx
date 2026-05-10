@@ -38,7 +38,7 @@ function Navbar() {
             )}
 
             {/* Admin Links */}
-            {role === "ADMIN" && (
+            {role === "ROLE_RECRUITER" && (
               <>
                 <Link to="/recruiter" className="nav-link">
                   Dashboard
