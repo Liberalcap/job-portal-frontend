@@ -17,7 +17,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import "./App.css";
 
 function App() {
-  const role = authService.getUserRole();
+  const role = localStorage.getItem("userRole")?.replace("ROLE_", "");
 
   return (
     <Router>
