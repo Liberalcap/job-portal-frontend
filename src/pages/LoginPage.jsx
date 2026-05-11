@@ -16,27 +16,52 @@ function LoginPage() {
   
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+  e.preventDefault();
+  setLoading(true);
+  setError("");
 
-    try {
-      console.log('Attempting login with:', { email });
-      const response = await authService.login({ email, password });
-      console.log('Login successful:', response);
-      navigate("/");
-    } catch (err) {
-      console.error('Login error:', err);
-      const errorMessage = 
-        err.response?.data?.message || 
-        err.response?.data?.error ||
-        err.message ||
-        'Login failed. Please check your credentials.';
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    console.log("Attempting login with:", { email });
+
+    const response = await authService.login({
+      email,
+      password,
+    });
+
+    console.log("Login successful:", response);
+
+    // Store token
+    localStorage.setItem("token", response.token);
+
+    // Store recruiter/user role
+    localStorage.setItem(
+      "userRole",
+      response.role?.trim()
+    );
+
+    console.log(
+      "Stored Role:",
+      localStorage.getItem("userRole")
+    );
+
+    // Redirect after login
+    navigate("/");
+
+  } catch (err) {
+    console.error("Login error:", err);
+
+    const errorMessage =
+      err.response?.data?.message ||
+      err.response?.data?.error ||
+      err.message ||
+      "Login failed. Please check your credentials.";
+
+    setError(errorMessage);
+
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="login-container">

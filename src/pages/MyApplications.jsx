@@ -7,20 +7,34 @@ function MyApplications() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    applicationService.getMyApplications()
-      .then((data) => {
-        setApplications(data);
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-      .finally(() => {
+    const fetchApplications = async () => {
+      try {
+        const data = await applicationService.getMyApplications();
+
+        console.log("Applications Response:", data);
+
+        // Handle different response structures
+        if (Array.isArray(data)) {
+          setApplications(data);
+        } else if (Array.isArray(data.data)) {
+          setApplications(data.data);
+        } else {
+          setApplications([]);
+        }
+
+      } catch (err) {
+        console.error("Applications Error:", err);
+        setApplications([]);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchApplications();
   }, []);
 
   const getStatusClass = (status) => {
-    switch(status) {
+    switch (status) {
       case "ACCEPTED":
         return "status-accepted";
       case "REJECTED":
@@ -33,9 +47,15 @@ function MyApplications() {
   };
 
   const formatDate = (dateString) => {
-    if (!dateString) return 'N/A';
+    if (!dateString) return "N/A";
+
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { year: '2-digit', month: 'short' });
+
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
   };
 
   if (loading) {
@@ -53,58 +73,63 @@ function MyApplications() {
   return (
     <div className="applications-container">
       <div className="applications-wrapper">
+
         <div className="applications-header">
-          <h1>Applications</h1>
+          <h1>My Applications</h1>
         </div>
 
         {applications.length === 0 ? (
           <div className="applications-empty">
-            <p>No applications yet. Start applying to opportunities now!</p>
+            <p>No applications found.</p>
           </div>
         ) : (
           <div className="applications-grid">
+
             <div className="table-header">
-              <div>Applications</div>
-              <div>Applicants</div>
-              <div>Application Status</div>
-              <div></div>
-              <div>View Application</div>
+              <div>Job</div>
+              <div>Company</div>
+              <div>Status</div>
+              <div>Applied Date</div>
+              <div>Action</div>
             </div>
 
             {applications.map((app) => (
               <div key={app.id} className="application-card">
+
                 <div className="card-header">
                   <div className="card-title">
-                    <a href="#" className="card-title-link">
-                      {app.jobTitle}
-                      <span className="external-icon">↗</span>
-                    </a>
+                    {app.jobTitle || "Untitled Job"}
                   </div>
-                  <div className="card-company">{app.companyName}</div>
-                  <div className="card-date">Applied on {formatDate(app.appliedDate)}</div>
+
+                  <div className="card-company">
+                    {app.companyName || "Unknown Company"}
+                  </div>
                 </div>
 
                 <div className="card-info-group">
-                  <div className="card-info-label">Applicants</div>
-                  <div className="card-info-value">{app.applicantCount || 0}</div>
-                </div>
-
-                <div className="card-info-group">
-                  <div className="card-info-label">Status</div>
-                  <span className={`status-badge ${getStatusClass(app.status)}`}>
-                    {app.status}
+                  <span
+                    className={`status-badge ${getStatusClass(app.status)}`}
+                  >
+                    {app.status || "PENDING"}
                   </span>
                 </div>
 
-                <div className="card-info-group"></div>
+                <div className="card-date">
+                  {formatDate(app.appliedDate)}
+                </div>
 
                 <div className="application-action">
-                  <button className="action-icon" title="View details">
+                  <button
+                    className="action-icon"
+                    title="View Application"
+                  >
                     📋
                   </button>
                 </div>
+
               </div>
             ))}
+
           </div>
         )}
       </div>
