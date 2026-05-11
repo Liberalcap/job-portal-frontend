@@ -18,11 +18,14 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import "./App.css";
 
 function App() {
-  // ✅ Get role directly from localStorage
+  // Get role from localStorage
   const role =
     localStorage.getItem("userRole")?.replace("ROLE_", "") || "";
 
-  console.log("App Role:", role);
+  // Clean spaces/newlines
+  const cleanRole = role.trim();
+
+  console.log("App Role:", cleanRole);
 
   return (
     <Router>
@@ -57,7 +60,7 @@ function App() {
             <Route
               path="/recruiter"
               element={
-                cleanRole === "ROLE_RECRUITER" ? (
+                cleanRole === "RECRUITER" ? (
                   <RecruiterDashboard />
                 ) : (
                   <div className="w-full px-6 py-12">
@@ -72,7 +75,7 @@ function App() {
             <Route
               path="/create-job"
               element={
-                cleanRole === "ROLE_RECRUITER" ? (
+                cleanRole === "RECRUITER" ? (
                   <CreateJob />
                 ) : (
                   <div className="w-full px-6 py-12">
@@ -87,7 +90,7 @@ function App() {
             <Route
               path="/users"
               element={
-                cleanRole === "ROLE_RECRUITER" ? (
+                cleanRole === "RECRUITER" ? (
                   <UsersPage />
                 ) : (
                   <div className="w-full px-6 py-12">
