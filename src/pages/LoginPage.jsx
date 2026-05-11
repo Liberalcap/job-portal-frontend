@@ -31,22 +31,22 @@ function LoginPage() {
 
     console.log("Login successful:", response);
 
-    // Store JWT token
+    // Store token
     localStorage.setItem(
       "token",
       response.token
     );
 
-    // Store user role properly
+    // Store role
     localStorage.setItem(
       "userRole",
-      response.user.role?.trim()
+      response.role?.trim()
     );
 
-    // Store full user object
+    // Store email
     localStorage.setItem(
-      "user",
-      JSON.stringify(response.user)
+      "userEmail",
+      response.email
     );
 
     console.log(
@@ -54,7 +54,7 @@ function LoginPage() {
       localStorage.getItem("userRole")
     );
 
-    // Redirect user
+    // Redirect
     navigate("/");
 
   } catch (err) {
