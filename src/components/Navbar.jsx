@@ -42,7 +42,7 @@ function Navbar() {
             </Link>
 
             {/* ✅ Logged-in User Links */}
-            {isAuthenticated && (
+            {isAuthenticated && role !== "RECRUITER" && (
               <Link to="/my-applications" className="nav-link">
                 Applications
               </Link>
