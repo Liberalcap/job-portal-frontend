@@ -116,8 +116,8 @@ function LoginPage() {
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.trim())}
+              onBlur={(e) => setEmail(e.target.value.trim())}
               autoComplete="email"
               required
               className="form-input"

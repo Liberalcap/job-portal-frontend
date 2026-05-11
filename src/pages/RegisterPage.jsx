@@ -48,9 +48,16 @@ function RegisterPage() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    let finalValue = value;
+    
+    // Trim email field
+    if (name === "email") {
+      finalValue = value.trim();
+    }
+    
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: finalValue
     }));
     // Clear error for this field when user starts typing
     if (errors[name]) {
@@ -143,6 +150,7 @@ function RegisterPage() {
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
+              autoComplete="email"
               className={errors.email ? "input-error" : ""}
             />
             {errors.email && <span className="error-message">{errors.email}</span>}
