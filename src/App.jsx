@@ -83,7 +83,17 @@ function App() {
             {/* User Routes */}
             <Route
               path="/my-applications"
-              element={<MyApplications />}
+              element={
+                cleanRole !== "RECRUITER" ? (
+                  <MyApplications />
+                ) : (
+                  <div className="w-full px-6 py-12">
+                    <h2 className="text-2xl font-bold text-red-600">
+                      Access Denied
+                    </h2>
+                  </div>
+                )
+              }
             />
 
             {/* Recruiter Routes */}
