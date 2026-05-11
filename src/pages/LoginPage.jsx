@@ -17,6 +17,7 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
   e.preventDefault();
+
   setLoading(true);
   setError("");
 
@@ -30,13 +31,22 @@ function LoginPage() {
 
     console.log("Login successful:", response);
 
-    // Store token
-    localStorage.setItem("token", response.token);
+    // Store JWT token
+    localStorage.setItem(
+      "token",
+      response.token
+    );
 
-    // Store recruiter/user role
+    // Store user role properly
     localStorage.setItem(
       "userRole",
-      response.role?.trim()
+      response.user.role?.trim()
+    );
+
+    // Store full user object
+    localStorage.setItem(
+      "user",
+      JSON.stringify(response.user)
     );
 
     console.log(
@@ -44,7 +54,7 @@ function LoginPage() {
       localStorage.getItem("userRole")
     );
 
-    // Redirect after login
+    // Redirect user
     navigate("/");
 
   } catch (err) {
