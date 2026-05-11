@@ -117,6 +117,8 @@ function LoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onBlur={(e) => setEmail(e.target.value)}
+              autoComplete="email"
               required
               className="form-input"
               placeholder="Enter your Email"
