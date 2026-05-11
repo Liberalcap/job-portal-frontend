@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import { LoadingProvider } from "./context/LoadingContext";
 import Navbar from "./components/Navbar";
 import LoadingBar from "./components/LoadingBar";
@@ -18,14 +20,23 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import "./App.css";
 
 function App() {
-  // Get role from localStorage
-  const role =
-    localStorage.getItem("userRole")?.replace("ROLE_", "") || "";
 
-  // Clean spaces/newlines
-  const cleanRole = role.trim();
+  const [cleanRole, setCleanRole] = useState("");
 
-  console.log("App Role:", cleanRole);
+  useEffect(() => {
+
+    const storedRole =
+      localStorage.getItem("userRole") || "";
+
+    const formattedRole = storedRole
+      .replace("ROLE_", "")
+      .trim();
+
+    setCleanRole(formattedRole);
+
+    console.log("App Role:", formattedRole);
+
+  }, []);
 
   return (
     <Router>
@@ -35,16 +46,35 @@ function App() {
 
         <main className="bg-gray-50 min-h-screen w-full">
           <Routes>
+
             {/* Public Routes */}
             <Route path="/" element={<HomePage />} />
-            <Route path="/jobs" element={<JobsPage />} />
-            <Route path="/jobs/:id" element={<JobDetails />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+
+            <Route
+              path="/jobs"
+              element={<JobsPage />}
+            />
+
+            <Route
+              path="/jobs/:id"
+              element={<JobDetails />}
+            />
+
+            <Route
+              path="/login"
+              element={<LoginPage />}
+            />
+
+            <Route
+              path="/register"
+              element={<RegisterPage />}
+            />
+
             <Route
               path="/forgot-password"
               element={<ForgotPasswordPage />}
             />
+
             <Route
               path="/reset-password/:token"
               element={<ResetPasswordPage />}
@@ -101,6 +131,7 @@ function App() {
                 )
               }
             />
+
           </Routes>
         </main>
       </LoadingProvider>
