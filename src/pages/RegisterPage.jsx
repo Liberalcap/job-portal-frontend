@@ -77,14 +77,11 @@ function RegisterPage() {
 
     await authService.register(registerData);
 
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-
-    setSuccessMessage("Registration successful! Redirecting to login...");
+    setSuccessMessage("Registration successful! Redirecting to home...");
 
     // Small delay for UX
     setTimeout(() => {
-      navigate("/login");
+      navigate("/");
     }, 1000);
 
   } catch (err) {
