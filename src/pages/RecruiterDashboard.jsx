@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import applicationService from "../services/applicationService";
 import api from "../services/api";
+import jobService from "../services/jobService";
 import "./RecruiterDashboard.css";
 
 function RecruiterDashboard() {
+  const navigate = useNavigate();
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(false);
   const [jobs, setJobs] = useState([]);
@@ -58,7 +61,44 @@ function RecruiterDashboard() {
       );
     } catch (err) {
       console.error("Update failed:", err);
+      alert("Failed to update status");
     }
+  };
+
+  const deleteApplication = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this application?")) {
+      return;
+    }
+
+    try {
+      await applicationService.deleteApplication(id);
+      setApplications((prev) => prev.filter((app) => app.id !== id));
+    } catch (err) {
+      console.error("Delete failed:", err);
+      alert("Failed to delete application");
+    }
+  };
+
+  const deleteJob = async (jobId) => {
+    if (!window.confirm("Are you sure you want to delete this job? All applications for this job will also be deleted.")) {
+      return;
+    }
+
+    try {
+      await jobService.deleteJob(jobId);
+      setJobs((prev) => prev.filter((job) => job.id !== jobId));
+      if (selectedJob?.id === jobId) {
+        setSelectedJob(null);
+        setApplications([]);
+      }
+    } catch (err) {
+      console.error("Delete failed:", err);
+      alert("Failed to delete job");
+    }
+  };
+
+  const editJob = (jobId) => {
+    navigate(`/edit-job/${jobId}`);
   };
 
   return (
@@ -85,15 +125,35 @@ function RecruiterDashboard() {
               ) : (
                 <div className="jobs-list">
                   {jobs.map((job) => (
-                    <button
+                    <div
                       key={job.id}
-                      onClick={() => setSelectedJob(job)}
-                      className={`job-button ${
+                      className={`job-button-wrapper ${
                         selectedJob?.id === job.id ? "active" : "inactive"
                       }`}
                     >
-                      {job.title}
-                    </button>
+                      <button
+                        onClick={() => setSelectedJob(job)}
+                        className={`job-button`}
+                      >
+                        {job.title}
+                      </button>
+                      <div className="job-actions">
+                        <button
+                          onClick={() => editJob(job.id)}
+                          className="job-action-btn btn-edit"
+                          title="Edit"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          onClick={() => deleteJob(job.id)}
+                          className="job-action-btn btn-delete"
+                          title="Delete"
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    </div>
                   ))}
                 </div>
               )}
@@ -134,20 +194,22 @@ function RecruiterDashboard() {
                           </div>
 
                           <div className="application-actions">
-                            <button
-                              disabled={app.status === "ACCEPTED"}
-                              onClick={() => updateStatus(app.id, "ACCEPTED")}
-                              className="action-button btn-accept"
+                            <select
+                              value={app.status}
+                              onChange={(e) => updateStatus(app.id, e.target.value)}
+                              className="status-select"
                             >
-                              Accept
-                            </button>
+                              <option value="PENDING">PENDING</option>
+                              <option value="ACCEPTED">ACCEPTED</option>
+                              <option value="REJECTED">REJECTED</option>
+                            </select>
 
                             <button
-                              disabled={app.status === "REJECTED"}
-                              onClick={() => updateStatus(app.id, "REJECTED")}
-                              className="action-button btn-reject"
+                              onClick={() => deleteApplication(app.id)}
+                              className="action-button btn-delete"
+                              title="Delete"
                             >
-                              Reject
+                              Delete
                             </button>
                           </div>
                         </div>

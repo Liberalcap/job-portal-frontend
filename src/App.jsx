@@ -11,6 +11,7 @@ import JobDetails from "./pages/JobDetails";
 import MyApplications from "./pages/MyApplications";
 import RecruiterDashboard from "./pages/RecruiterDashboard";
 import CreateJob from "./pages/CreateJob";
+import EditJob from "./pages/EditJob";
 import UsersPage from "./pages/UsersPage";
 import HomePage from "./pages/HomePage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
@@ -117,6 +118,21 @@ function App() {
               element={
                 cleanRole === "RECRUITER" ? (
                   <CreateJob />
+                ) : (
+                  <div className="w-full px-6 py-12">
+                    <h2 className="text-2xl font-bold text-red-600">
+                      Access Denied
+                    </h2>
+                  </div>
+                )
+              }
+            />
+
+            <Route
+              path="/edit-job/:id"
+              element={
+                cleanRole === "RECRUITER" ? (
+                  <EditJob />
                 ) : (
                   <div className="w-full px-6 py-12">
                     <h2 className="text-2xl font-bold text-red-600">

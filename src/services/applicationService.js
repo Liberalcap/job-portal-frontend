@@ -31,6 +31,12 @@ const applicationService = {
     );
     return response.data;
   },
+
+  // Delete application
+  deleteApplication: async (applicationId) => {
+    const response = await api.delete(`/api/applications/${applicationId}`);
+    return response.data;
+  },
 };
 
 export default applicationService;
