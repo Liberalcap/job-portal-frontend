@@ -166,6 +166,8 @@
   font-size: 0.95rem;
   font-family: inherit;
   transition: all 0.2s ease;
+  color: #1f2937;
+  background: white;
 }
 
 .form-input:focus,
