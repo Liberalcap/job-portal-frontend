@@ -149,11 +149,12 @@
 
 .job-button.inactive {
   background: #f3f4f6;
-  color: #4b5563;
+  color: #000000;
 }
 
 .job-button.inactive:hover {
   background: #e5e7eb;
+  color: #000000;
 }
 
 .job-button.active {
