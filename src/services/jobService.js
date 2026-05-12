@@ -22,7 +22,7 @@ const jobService = {
 
   // Update job
   updateJob: async (jobId, jobData) => {
-    const response = await api.post(`/api/jobs/${jobId}`, jobData);
+    const response = await api.put(`/api/jobs/${jobId}`, jobData);
     return response.data;
   },
 
@@ -40,16 +40,16 @@ const jobService = {
     return response.data;
   },
 
-  // ✅ APPLY TO JOB
+  // Apply to job
   applyToJob: async (jobId) => {
     const response = await api.post(`/api/applications/${jobId}`);
     return response.data;
   },
 
-  // 🔥 NEW: CHECK IF USER ALREADY APPLIED
+  // Check if already applied
   hasApplied: async (jobId) => {
     const response = await api.get(`/api/applications/check/${jobId}`);
-    return response.data; // true / false
+    return response.data;
   },
 };
 
