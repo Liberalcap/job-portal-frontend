@@ -22,7 +22,7 @@ const jobService = {
 
   // Update job
   updateJob: async (jobId, jobData) => {
-    const response = await api.put(`/api/jobs/${jobId}`, jobData);
+    const response = await api.post(`/api/jobs/${jobId}`, jobData);
     return response.data;
   },
 
