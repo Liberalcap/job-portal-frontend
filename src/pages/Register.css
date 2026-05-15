@@ -166,6 +166,21 @@
   color: #9ca3af;
 }
 
+/* Autofill styling */
+.register-box input:-webkit-autofill,
+.register-box input:-webkit-autofill:hover,
+.register-box input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #f9fafb inset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  border-color: #e5e7eb !important;
+  caret-color: #1f2937;
+}
+
+.register-box input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  border-color: #2563eb !important;
+}
+
 .register-box input.input-error {
   border-color: #ef4444;
   background-color: #fef2f2;

@@ -207,6 +207,21 @@
   background-color: #fafbff;
 }
 
+/* Autofill styling */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #1a1a1a !important;
+  border-color: #e0e0e0 !important;
+  caret-color: #1a1a1a;
+}
+
+.form-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #fafbff inset !important;
+  border-color: #4A90E2 !important;
+}
+
 .form-input::placeholder {
   color: #999999;
 }
