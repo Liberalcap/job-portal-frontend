@@ -178,6 +178,21 @@
   background: #fafbff;
 }
 
+/* Autofill styling */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  border-color: #e5e7eb !important;
+  caret-color: #1f2937;
+}
+
+.form-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #fafbff inset !important;
+  border-color: #2563eb !important;
+}
+
 .form-input::placeholder,
 .form-textarea::placeholder {
   color: #9ca3af;
