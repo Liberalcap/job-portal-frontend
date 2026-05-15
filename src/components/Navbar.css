@@ -42,12 +42,28 @@
   font-weight: 500;
   color: #444;
   text-decoration: none;
-  transition: 0.2s;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-link:hover {
   color: #2563eb;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 /* 🔥 RIGHT SIDE */
@@ -67,12 +83,15 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  transition: 0.3s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
 .btn-login:hover {
   background: #2563eb;
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .btn-register {
@@ -84,12 +103,15 @@
   font-size: 14px;
   font-weight: 500;
   background: transparent;
-  transition: 0.3s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
 .btn-register:hover {
   background: #2563eb;
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 /* LOGOUT */
@@ -100,11 +122,17 @@
   color: white;
   border: none;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-logout:hover {
   background: #dc2626;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.btn-logout:active {
+  transform: translateY(-1px) scale(0.98);
 }
 
 /* ✨ OPTIONAL POLISH (makes it look premium) */

@@ -115,7 +115,7 @@ function JobsPage() {
                   </div>
                   <div className="job-detail">
                     <span className="job-detail-icon">💰</span>
-                    <span className="job-detail-salary">{job.salary}</span>
+                    <span className="job-detail-salary">₹{job.salary} LPA</span>
                   </div>
                 </div>
 
