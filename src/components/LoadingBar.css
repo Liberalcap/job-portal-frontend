@@ -18,10 +18,11 @@
     #4A90E2
   );
   width: 0%;
-  transition: width 0.3s ease;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
 }
 
 .loading-bar-container.active .loading-bar {
-  box-shadow: 0 0 15px rgba(74, 144, 226, 0.8);
+  box-shadow: 0 0 20px rgba(74, 144, 226, 0.9), 0 0 40px rgba(74, 144, 226, 0.5);
+  transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }

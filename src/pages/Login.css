@@ -137,12 +137,14 @@
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .social-button:hover {
   border-color: #999999;
   background: #f9f9f9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .google-button:hover {
@@ -192,7 +194,7 @@
   border: 1px solid #e0e0e0;
   border-radius: 6px;
   font-size: 0.95rem;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   background-color: #ffffff;
   color: #1a1a1a;
   box-sizing: border-box;
@@ -200,8 +202,9 @@
 
 .form-input:focus {
   outline: none;
-  border-color: #999999;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1), 0 4px 12px rgba(74, 144, 226, 0.1);
+  background-color: #fafbff;
 }
 
 .form-input::placeholder {
@@ -257,13 +260,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 
 .checkbox:checked {
   background-color: #4A90E2;
   border-color: #4A90E2;
+  transform: scale(1.05);
 }
 
 .checkbox:checked::after {
@@ -275,6 +279,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .remember-me label {
@@ -288,16 +304,32 @@
   color: #999999;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
   flex-shrink: 1;
   text-align: right;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: relative;
+}
+
+.forgot-password::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #4A90E2;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .forgot-password:hover {
-  color: #1a1a1a;
+  color: #4A90E2;
+}
+
+.forgot-password:hover::after {
+  width: 100%;
 }
 
 .login-button {
@@ -308,17 +340,41 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   color: white;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.login-button:hover:not(:disabled)::before {
+  width: 300px;
+  height: 300px;
 }
 
 .login-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #357ABD 0%, #2A5A94 100%);
-  box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.login-button:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.98);
 }
 
 .login-button:disabled {
