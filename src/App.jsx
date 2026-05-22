@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 import { LoadingProvider } from "./context/LoadingContext";
 import Navbar from "./components/Navbar";
@@ -21,36 +20,13 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import "./App.css";
 
 function App() {
+  // ✅ Get role directly from localStorage (not in state)
+  const getCleanRole = () => {
+    const storedRole = localStorage.getItem("userRole") || "";
+    return storedRole.replace("ROLE_", "").trim();
+  };
 
-  const [cleanRole, setCleanRole] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-
-  const storedRole =
-    localStorage.getItem("userRole") || "";
-
-  const formattedRole = storedRole
-    .replace("ROLE_", "")
-    .trim();
-
-  setCleanRole(formattedRole);
-
-  console.log("App Role:", formattedRole);
-
-  setLoading(false);
-
-}, []);
-
-  if (loading) {
-  return (
-    <div className="w-full h-screen flex items-center justify-center">
-      <h2 className="text-xl font-semibold">
-        Loading...
-      </h2>
-    </div>
-  );
-}
+  const cleanRole = getCleanRole();
 
   return (
     <Router>
