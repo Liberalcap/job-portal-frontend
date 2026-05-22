@@ -22,22 +22,35 @@ import "./App.css";
 
 function App() {
 
-  const [cleanRole, setCleanRole] = useState("");
+  const [cleanRole, setCleanRole] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
-    const storedRole =
-      localStorage.getItem("userRole") || "";
+  const storedRole =
+    localStorage.getItem("userRole") || "";
 
-    const formattedRole = storedRole
-      .replace("ROLE_", "")
-      .trim();
+  const formattedRole = storedRole
+    .replace("ROLE_", "")
+    .trim();
 
-    setCleanRole(formattedRole);
+  setCleanRole(formattedRole);
 
-    console.log("App Role:", formattedRole);
+  console.log("App Role:", formattedRole);
 
-  }, []);
+  setLoading(false);
+
+}, []);
+
+  if (loading) {
+  return (
+    <div className="w-full h-screen flex items-center justify-center">
+      <h2 className="text-xl font-semibold">
+        Loading...
+      </h2>
+    </div>
+  );
+}
 
   return (
     <Router>
