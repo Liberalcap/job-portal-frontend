@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useLayoutEffect, useState } from "react";
 
 import { LoadingProvider } from "./context/LoadingContext";
 import Navbar from "./components/Navbar";
@@ -20,13 +21,26 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import "./App.css";
 
 function App() {
-  // ✅ Get role directly from localStorage (not in state)
-  const getCleanRole = () => {
-    const storedRole = localStorage.getItem("userRole") || "";
-    return storedRole.replace("ROLE_", "").trim();
-  };
+  const [cleanRole, setCleanRole] = useState("");
 
-  const cleanRole = getCleanRole();
+  // ✅ useLayoutEffect runs BEFORE paint (synchronously)
+  useLayoutEffect(() => {
+    const storedRole = localStorage.getItem("userRole") || "";
+    const formattedRole = storedRole.replace("ROLE_", "").trim();
+    setCleanRole(formattedRole);
+  }, []);
+
+  // ✅ Listen for storage changes (login in other tab, etc)
+  useLayoutEffect(() => {
+    const handleStorageChange = () => {
+      const storedRole = localStorage.getItem("userRole") || "";
+      const formattedRole = storedRole.replace("ROLE_", "").trim();
+      setCleanRole(formattedRole);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   return (
     <Router>
