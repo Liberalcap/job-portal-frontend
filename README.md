@@ -10,6 +10,8 @@ The application allows users to browse jobs, apply for positions, and recruiters
 
 **Frontend Deployment:** https://job-portal-frontend-six-pi.vercel.app/
 
+**Frontend Repository:** https://github.com/Liberalcap/job-portal-frontend
+
 **Backend Repository:** https://github.com/Liberalcap/job-portal-backend
 
 ---
@@ -97,6 +99,8 @@ The application allows users to browse jobs, apply for positions, and recruiters
 
 ![Forgot Password](screenshots/forgot-password.png)
 
+---
+
 ## Tech Stack
 
 - **React.js** - UI library
@@ -120,7 +124,7 @@ The application allows users to browse jobs, apply for positions, and recruiters
 ### 1. Clone the Repository
 
 ```bash
-git clone <https://github.com/Liberalcap/job-portal-frontend>
+git clone https://github.com/Liberalcap/job-portal-frontend
 cd job-portal-frontend
 ```
 
@@ -226,25 +230,3 @@ The application connects to a backend API. Ensure your backend is running and th
 - Users: `/users`, `/users/:id`
 
 ---
-
-## Contributing
-
-Contributions are welcome! To contribute:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## Support
-
-For issues or questions, please open an issue on the GitHub repository.
