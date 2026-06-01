@@ -48,105 +48,55 @@ function Navbar() {
             <span></span>
           </button>
 
-          {/* Combined Mobile Menu */}
-          <div className={`mobile-menu-container ${mobileMenuOpen ? "open" : ""}`}>
-            {/* Navigation Links */}
-            <div className="navbar-links-mobile">
-              <Link to="/" className="nav-link" onClick={closeMobileMenu}>
-                Home
-              </Link>
+          {/* Navigation Links */}
+          <div className={`navbar-links ${mobileMenuOpen ? "mobile-open" : ""}`}>
 
-              <Link to="/jobs" className="nav-link" onClick={closeMobileMenu}>
-                Jobs
-              </Link>
-
-              {/* Logged-in User Links */}
-              {isAuthenticated && role !== "RECRUITER" && (
-                <Link to="/my-applications" className="nav-link" onClick={closeMobileMenu}>
-                  Applications
-                </Link>
-              )}
-
-              {/* Recruiter Links */}
-              {role === "RECRUITER" && (
-                <>
-                  <Link to="/recruiter" className="nav-link" onClick={closeMobileMenu}>
-                    Dashboard
-                  </Link>
-                  <Link to="/create-job" className="nav-link" onClick={closeMobileMenu}>
-                    Post Job
-                  </Link>
-                  <Link to="/users" className="nav-link" onClick={closeMobileMenu}>
-                    Users
-                  </Link>
-                </>
-              )}
-            </div>
-
-            {/* Auth Buttons */}
-            <div className="navbar-auth-mobile">
-              {isAuthenticated ? (
-                <button onClick={() => { handleLogout(); closeMobileMenu(); }} className="btn-logout">
-                  Logout
-                </button>
-              ) : (
-                <>
-                  <Link to="/login" className="btn-login" onClick={closeMobileMenu}>
-                    Login
-                  </Link>
-                  <Link to="/register" className="btn-register" onClick={closeMobileMenu}>
-                    Register
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
-
-          {/* Desktop Navigation Links */}
-          <div className="navbar-links-desktop">
-            <Link to="/" className="nav-link">
+            <Link to="/" className="nav-link" onClick={closeMobileMenu}>
               Home
             </Link>
 
-            <Link to="/jobs" className="nav-link">
+            <Link to="/jobs" className="nav-link" onClick={closeMobileMenu}>
               Jobs
             </Link>
 
-            {/* Logged-in User Links */}
+            {/* ✅ Logged-in User Links */}
             {isAuthenticated && role !== "RECRUITER" && (
-              <Link to="/my-applications" className="nav-link">
+              <Link to="/my-applications" className="nav-link" onClick={closeMobileMenu}>
                 Applications
               </Link>
             )}
 
-            {/* Recruiter Links */}
+            {/* ✅ Recruiter Links */}
             {role === "RECRUITER" && (
               <>
-                <Link to="/recruiter" className="nav-link">
+                <Link to="/recruiter" className="nav-link" onClick={closeMobileMenu}>
                   Dashboard
                 </Link>
-                <Link to="/create-job" className="nav-link">
+
+                <Link to="/create-job" className="nav-link" onClick={closeMobileMenu}>
                   Post Job
                 </Link>
-                <Link to="/users" className="nav-link">
+
+                <Link to="/users" className="nav-link" onClick={closeMobileMenu}>
                   Users
                 </Link>
               </>
             )}
           </div>
 
-          {/* Desktop Auth Buttons */}
-          <div className="navbar-auth-desktop">
+          {/* Auth Buttons */}
+          <div className={`navbar-auth ${mobileMenuOpen ? "mobile-open" : ""}`}>
             {isAuthenticated ? (
-              <button onClick={handleLogout} className="btn-logout">
+              <button onClick={() => { handleLogout(); closeMobileMenu(); }} className="btn-logout">
                 Logout
               </button>
             ) : (
               <>
-                <Link to="/login" className="btn-login">
+                <Link to="/login" className="btn-login" onClick={closeMobileMenu}>
                   Login
                 </Link>
-                <Link to="/register" className="btn-register">
+
+                <Link to="/register" className="btn-register" onClick={closeMobileMenu}>
                   Register
                 </Link>
               </>
