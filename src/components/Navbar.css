@@ -148,18 +148,19 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
-  margin: 0 8px 0 auto;
-  z-index: 105;
+  padding: 6px;
+  margin: 0 4px 0 auto;
+  z-index: 106;
   width: 44px;
   height: 44px;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .hamburger span {
-  width: 25px;
-  height: 3px;
+  width: 24px;
+  height: 2.5px;
   background-color: #2563eb;
   margin: 5px 0;
   transition: all 0.3s ease-in-out;
@@ -168,7 +169,7 @@
 }
 
 .hamburger.open span:nth-child(1) {
-  transform: rotate(-45deg) translate(-8px, 8px);
+  transform: rotate(-45deg) translate(-5px, 6px);
 }
 
 .hamburger.open span:nth-child(2) {
@@ -176,7 +177,7 @@
 }
 
 .hamburger.open span:nth-child(3) {
-  transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* MOBILE RESPONSIVE */
@@ -240,8 +241,7 @@
 
   .navbar-auth {
     position: absolute;
-    top: auto;
-    right: auto;
+    top: 460px;
     left: 0;
     width: 100%;
     flex-direction: column;
@@ -252,12 +252,12 @@
     background-color: #ffffff;
     transition: max-height 0.3s ease-in-out;
     margin-left: 0;
-    z-index: 103;
+    z-index: 104;
+    border-top: 1px solid #e0e0e0;
   }
 
   .navbar-auth.mobile-open {
-    max-height: 150px;
-    border-top: 1px solid #e0e0e0;
+    max-height: 200px;
   }
 
   .btn-login,
@@ -338,7 +338,7 @@
   }
 
   .navbar-auth {
-    top: auto;
+    top: 406px;
   }
 
   .navbar-auth.mobile-open {
