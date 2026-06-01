@@ -196,10 +196,6 @@
 
   .hamburger {
     display: flex;
-    background: #ffffff;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    z-index: 110;
   }
 
   .navbar-links {
@@ -213,9 +209,8 @@
     gap: 0;
     margin-left: 0;
     padding: 0;
-    z-index: 105;
-    /* limit height so auth appears right below */
-    max-height: 160px;
+    z-index: 104;
+    max-height: 55vh;
     overflow-y: auto;
     border-bottom: 1px solid #e0e0e0;
   }
@@ -246,8 +241,7 @@
   .navbar-auth {
     display: none;
     position: fixed;
-    /* place directly below the limited links area */
-    top: calc(60px + 160px);
+    top: calc(60px + 55vh);
     left: 0;
     width: 100%;
     flex-direction: column;
@@ -255,7 +249,7 @@
     padding: 0;
     background-color: #ffffff;
     margin-left: 0;
-    z-index: 103;
+    z-index: 105;
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
   }
@@ -326,25 +320,9 @@
   .navbar-content {
     height: 56px;
   }
-  .navbar-links {
-    display: none;
-    position: fixed;
-    top: 56px;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    flex-direction: column;
-    gap: 0;
-    margin-left: 0;
-    padding: 0;
-    z-index: 105;
-    max-height: 160px;
-    overflow-y: auto;
-    border-bottom: 1px solid #e0e0e0;
-  }
 
-  .navbar-links.mobile-open {
-    display: flex;
+  .navbar-links {
+    top: 56px;
   }
 
   .nav-link {
@@ -354,16 +332,7 @@
   }
 
   .navbar-auth {
-    display: none;
-    position: fixed;
-    top: calc(56px + 160px);
-    left: 0;
-    width: 100%;
-    z-index: 103;
-  }
-
-  .navbar-auth.mobile-open {
-    display: flex;
+    top: 56px;
   }
 
   .btn-login,
