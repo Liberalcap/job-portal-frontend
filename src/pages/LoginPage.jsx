@@ -13,13 +13,23 @@ function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [emailError, setEmailError] = useState('');
   
 
   const handleLogin = async (e) => {
   e.preventDefault();
 
-  setLoading(true);
+  // client-side validation
   setError("");
+  setEmailError("");
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    setEmailError('Please enter a valid email address.');
+    return;
+  }
+
+  setLoading(true);
 
   try {
     console.log("Attempting login with:", { email });
@@ -116,13 +126,19 @@ function LoginPage() {
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value.trim())}
-              onBlur={(e) => setEmail(e.target.value.trim())}
+              onChange={(e) => setEmail(e.target.value)}
+              onBlur={(e) => {
+                const trimmed = e.target.value.trim();
+                setEmail(trimmed);
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                setEmailError(trimmed && !emailRegex.test(trimmed) ? 'Please enter a valid email address.' : '');
+              }}
               autoComplete="email"
               required
               className="form-input"
               placeholder="Enter your Email"
             />
+            {emailError && <div className="input-error">{emailError}</div>}
           </div>
 
           <div className="form-group">

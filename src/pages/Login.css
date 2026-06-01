@@ -407,6 +407,12 @@
   font-size: 0.875rem;
 }
 
+.input-error {
+  margin-top: 0.5rem;
+  color: #b91c1c;
+  font-size: 0.85rem;
+}
+
 .signup-link {
   text-align: center;
   font-size: 0.875rem;
