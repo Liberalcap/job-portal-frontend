@@ -68,6 +68,16 @@ function RegisterPage() {
     }
   };
 
+  const handleEmailBlur = (e) => {
+    const email = e.target.value.trim();
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErrors(prev => ({
+        ...prev,
+        email: "Please enter a valid email address"
+      }));
+    }
+  };
+
   const handleRegister = async (e) => {
   e.preventDefault();
   setSuccessMessage("");
@@ -150,6 +160,7 @@ function RegisterPage() {
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
+              onBlur={handleEmailBlur}
               autoComplete="email"
               className={errors.email ? "input-error" : ""}
             />
