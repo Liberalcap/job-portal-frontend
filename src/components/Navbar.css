@@ -149,7 +149,7 @@
   border: none;
   cursor: pointer;
   padding: 8px;
-  margin: 0 8px;
+  margin: 0 8px 0 auto;
   z-index: 105;
   width: 44px;
   height: 44px;
