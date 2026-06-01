@@ -1,11 +1,10 @@
 /* All styling is handled by Tailwind CSS */
 
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  
+a {
+  width: 100%;
+  justify-content: center;
+  box-sizing: border-box;
+}
 
 #spacer {
   height: 88px;
@@ -34,5 +33,26 @@
   &::after {
     right: 0;
     border-right-color: var(--border);
+  }
+}
+
+/* Mobile-friendly container constraints */
+@media (max-width: 1024px) {
+  main {
+    width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* Responsive padding */
+@media (max-width: 768px) {
+  main {
+    padding: 16px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 12px 0;
   }
 }

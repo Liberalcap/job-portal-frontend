@@ -314,16 +314,201 @@
 }
 
 /* RESPONSIVE */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .register-container {
+    padding: 16px;
+  }
+
   .register-box {
-    padding: 30px 20px;
+    padding: 1.25rem;
+    max-width: 100%;
   }
 
   .register-header h1 {
-    font-size: 24px;
+    font-size: 1.4rem;
   }
 
   .register-header p {
-    font-size: 13px;
+    font-size: 0.8rem;
+  }
+
+  .form-group {
+    margin-bottom: 0.75rem;
+  }
+
+  .form-group label {
+    font-size: 0.7rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .register-box input {
+    padding: 0.6rem 0.75rem;
+    font-size: 16px; /* Prevents iOS zoom */
+    border-radius: 6px;
+  }
+
+  .error-message {
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+  }
+
+  .register-btn {
+    padding: 0.65rem 0.8rem;
+    font-size: 0.85rem;
+    margin-top: 0.6rem;
+  }
+
+  .alert {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .login-link {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+  }
+
+  .login-link p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 12px;
+  }
+
+  .register-box {
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .register-header {
+    margin-bottom: 0.875rem;
+  }
+
+  .register-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .register-header p {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .register-form {
+    margin-top: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 0.7rem;
+  }
+
+  .form-group label {
+    font-size: 0.65rem;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.3px;
+  }
+
+  .register-box input {
+    padding: 0.55rem 0.65rem;
+    font-size: 16px;
+    border-radius: 5px;
+    border-width: 1px;
+  }
+
+  .register-box input.input-error {
+    background-color: #fef2f2;
+  }
+
+  .error-message {
+    font-size: 0.65rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+  }
+
+  .register-btn {
+    padding: 0.6rem 0.7rem;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    min-height: 44px;
+    letter-spacing: 0.3px;
+  }
+
+  .alert {
+    padding: 0.7rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.875rem;
+    border-radius: 6px;
+  }
+
+  .alert-success {
+    background-color: #f0fdf4;
+    border: 1px solid #86efac;
+  }
+
+  .alert-error {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+  }
+
+  .login-link {
+    text-align: center;
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .login-link p {
+    font-size: 0.7rem;
+    margin: 0;
+  }
+
+  .login-link a {
+    font-size: 0.7rem;
+    margin-left: 0.2rem;
+  }
+
+  /* Better touch targets */
+  button,
+  input[type="submit"],
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 360px) {
+  .register-box {
+    padding: 0.875rem;
+  }
+
+  .register-header h1 {
+    font-size: 1.1rem;
+  }
+
+  .register-header p {
+    font-size: 0.7rem;
+  }
+
+  .form-group label {
+    font-size: 0.6rem;
+  }
+
+  .register-box input {
+    font-size: 16px;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .error-message {
+    font-size: 0.6rem;
+  }
+
+  .register-btn {
+    font-size: 0.75rem;
+    padding: 0.55rem;
   }
 }
