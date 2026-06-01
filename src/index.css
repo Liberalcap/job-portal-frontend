@@ -27,8 +27,6 @@ body,
 /* Body */
 body {
   background-color: #ffffff;
-  font-size: clamp(14px, 2vw, 16px);
-  line-height: 1.6;
 }
 
 /* Typography base */
@@ -38,9 +36,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  /* Mobile-friendly touch targets */
-  --touch-target: 48px;
 }
 
 /* Dark mode variables */
@@ -62,25 +57,8 @@ body {
 
 /* Headings */
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-h1 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-}
-
 h2 {
-  font-size: clamp(1.3rem, 3vw, 2rem);
-}
-
-h3 {
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 500;
 }
 
 /* Paragraph */
@@ -94,82 +72,18 @@ code {
   padding: 4px 8px;
 }
 
-/* Touch-friendly buttons and links */
-button,
-a {
-  min-height: var(--touch-target);
-  min-width: var(--touch-target);
-}
-
-/* Better input styling for mobile */
-input,
-textarea,
-select {
-  font-size: 16px; /* Prevents zoom on iOS */
-  border-radius: 8px;
-  padding: 12px;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: #2563eb;
-}
-
-/* Responsive images */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Better scroll bar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f0f0f0;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Mobile optimizations */
+/* Mobile optimizations only */
 @media (max-width: 768px) {
-  html {
-    font-size: 14px;
+  /* Better input sizing for mobile (prevents iOS zoom) */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
   }
 
-  body {
-    font-size: 14px;
-  }
-
-  h1 {
-    font-size: clamp(1.3rem, 3vw, 1.8rem);
-  }
-
-  h2 {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  }
-
-  /* Better touch targets on mobile */
+  /* Touch-friendly targets */
   button,
-  a,
-  input[type="button"],
-  input[type="submit"] {
+  a {
     min-height: 44px;
     min-width: 44px;
   }
@@ -177,43 +91,6 @@ html {
 
 @media (max-width: 480px) {
   html {
-    font-size: 13px;
+    font-size: 14px;
   }
-
-  body {
-    font-size: 13px;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.3rem;
-  }
-
-  h3 {
-    font-size: 1.1rem;
-  }
-
-  /* More aggressive padding reduction */
-  * {
-    margin: 0;
-    padding: 0;
-  }
-}
-
-/* Prevent zooming issues */
-input[type="date"],
-input[type="time"],
-input[type="datetime-local"],
-input[type="month"],
-input[type="week"],
-input[type="email"],
-input[type="tel"],
-input[type="url"],
-input[type="number"],
-input[type="search"],
-input[type="password"] {
-  font-size: 16px;
 }
