@@ -209,15 +209,18 @@
     margin-left: 0;
     padding: 0;
     max-height: 0;
-    overflow: hidden;
+    overflow: visible;
     transition: max-height 0.3s ease-in-out;
     z-index: 104;
+    pointer-events: none;
   }
 
   .navbar-links.mobile-open {
-    max-height: 400px;
+    max-height: 500px;
     padding: 8px 0;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: none;
+    pointer-events: auto;
+    overflow: visible;
   }
 
   .nav-link {
@@ -241,7 +244,7 @@
 
   .navbar-auth {
     position: absolute;
-    top: 460px;
+    top: 60px;
     left: 0;
     width: 100%;
     flex-direction: column;
@@ -252,12 +255,14 @@
     background-color: #ffffff;
     transition: max-height 0.3s ease-in-out;
     margin-left: 0;
-    z-index: 104;
+    z-index: 103;
     border-top: 1px solid #e0e0e0;
+    pointer-events: none;
   }
 
   .navbar-auth.mobile-open {
     max-height: 200px;
+    pointer-events: auto;
   }
 
   .btn-login,
@@ -338,11 +343,11 @@
   }
 
   .navbar-auth {
-    top: 406px;
+    top: 60px;
   }
 
   .navbar-auth.mobile-open {
-    max-height: 130px;
+    max-height: 150px;
   }
 
   .btn-login,
