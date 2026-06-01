@@ -320,11 +320,13 @@
   }
 
   .register-box input {
-    font-size: 16px; /* Prevents iOS zoom */
+    font-size: 16px !important; /* Prevents iOS zoom */
+    min-height: 44px;
   }
 
   .register-btn {
-    min-height: 44px;
+    min-height: 48px;
+    font-size: 16px;
   }
 }
 
@@ -350,8 +352,9 @@
   }
 
   .register-box input {
-    padding: 0.6rem 0.75rem;
-    font-size: 16px;
+    padding: 0.65rem 0.75rem;
+    font-size: 16px !important;
+    min-height: 44px;
   }
 
   .error-message {
@@ -360,8 +363,8 @@
 
   .register-btn {
     padding: 0.65rem;
-    font-size: 0.85rem;
-    min-height: 44px;
+    font-size: 16px;
+    min-height: 48px;
   }
 
   .alert {

@@ -78,19 +78,20 @@ code {
   input,
   textarea,
   select {
-    font-size: 16px;
-  }
-
-  /* Touch-friendly targets */
-  button,
-  a {
-    min-height: 44px;
-    min-width: 44px;
+    font-size: 16px !important;
   }
 }
 
 @media (max-width: 480px) {
   html {
     font-size: 14px;
+  }
+
+  /* Ensure touch targets on mobile */
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    min-height: 44px;
   }
 }
