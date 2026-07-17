@@ -86,9 +86,6 @@ function Navbar() {
 
           {/* Auth Buttons */}
           <div className={`navbar-auth ${mobileMenuOpen ? "mobile-open" : ""}`}>
-            <Link to="/jobs" className="btn-mobile-jobs" onClick={closeMobileMenu}>
-              Jobs
-            </Link>
             {isAuthenticated ? (
               <button onClick={() => { handleLogout(); closeMobileMenu(); }} className="btn-logout">
                 Logout
@@ -100,6 +97,48 @@ function Navbar() {
                 </Link>
 
                 <Link to="/register" className="btn-register" onClick={closeMobileMenu}>
+                  Register
+                </Link>
+              </>
+            )}
+          </div>
+
+          {/* Mobile-only navigation keeps all menu items in their intended order. */}
+          <div className={`mobile-menu ${mobileMenuOpen ? "mobile-open" : ""}`}>
+            <Link to="/jobs" className="mobile-menu-link" onClick={closeMobileMenu}>
+              Jobs
+            </Link>
+
+            {isAuthenticated && role !== "RECRUITER" && (
+              <Link to="/my-applications" className="mobile-menu-link" onClick={closeMobileMenu}>
+                Applications
+              </Link>
+            )}
+
+            {role === "RECRUITER" && (
+              <>
+                <Link to="/recruiter" className="mobile-menu-link" onClick={closeMobileMenu}>
+                  Dashboard
+                </Link>
+                <Link to="/create-job" className="mobile-menu-link" onClick={closeMobileMenu}>
+                  Post Job
+                </Link>
+                <Link to="/users" className="mobile-menu-link" onClick={closeMobileMenu}>
+                  Users
+                </Link>
+              </>
+            )}
+
+            {isAuthenticated ? (
+              <button onClick={() => { handleLogout(); closeMobileMenu(); }} className="mobile-menu-logout">
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link to="/login" className="mobile-menu-link" onClick={closeMobileMenu}>
+                  Login
+                </Link>
+                <Link to="/register" className="mobile-menu-link" onClick={closeMobileMenu}>
                   Register
                 </Link>
               </>
