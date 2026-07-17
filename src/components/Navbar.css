@@ -306,6 +306,7 @@
   .mobile-menu-logout {
     background: transparent;
     color: #ef4444;
+    justify-content: center;
   }
 
   .mobile-menu-logout:active {
