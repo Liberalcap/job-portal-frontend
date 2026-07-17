@@ -86,6 +86,9 @@ function Navbar() {
 
           {/* Auth Buttons */}
           <div className={`navbar-auth ${mobileMenuOpen ? "mobile-open" : ""}`}>
+            <Link to="/jobs" className="btn-mobile-jobs" onClick={closeMobileMenu}>
+              Jobs
+            </Link>
             {isAuthenticated ? (
               <button onClick={() => { handleLogout(); closeMobileMenu(); }} className="btn-logout">
                 Logout
