@@ -100,10 +100,10 @@ function MyApplications() {
                   <div className="card-title">
                     {app.jobTitle || "Untitled Job"}
                   </div>
+                </div>
 
-                  <div className="card-company">
-                    {app.company || "Unknown Company"}
-                  </div>
+                <div className="card-company">
+                  {app.company || "Unknown Company"}
                 </div>
 
                 <div className="card-info-group">
