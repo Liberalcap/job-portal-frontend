@@ -102,7 +102,7 @@ function MyApplications() {
                   </div>
 
                   <div className="card-company">
-                    {app.companyName || "Unknown Company"}
+                    {app.company || "Unknown Company"}
                   </div>
                 </div>
 
