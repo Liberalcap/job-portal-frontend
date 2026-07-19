@@ -448,7 +448,14 @@
   }
 
   .application-card {
-    padding: 1.25rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "job action"
+      "company action"
+      "status date";
+    column-gap: 0.75rem;
+    row-gap: 0.65rem;
+    padding: 1rem;
     border-radius: 12px;
     border-bottom: 1px solid rgba(37, 99, 235, 0.08);
     margin-bottom: 0.75rem;
@@ -460,16 +467,52 @@
   }
 
   .card-header {
-    margin-bottom: 0.75rem;
+    grid-area: job;
+    margin: 0;
+  }
+
+  .card-company {
+    grid-area: company;
+    align-self: start;
   }
 
   .card-info-group {
+    grid-area: status;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(37, 99, 235, 0.05);
+    gap: 0.5rem;
+    padding: 0;
+    border: 0;
+  }
+
+  .card-info-group::before,
+  .card-date::before {
+    color: #6b7280;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .card-info-group::before {
+    content: "Status";
+  }
+
+  .card-date {
+    grid-area: date;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    color: #6b7280;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .card-date::before {
+    content: "Applied";
   }
 
   .card-info-label {
@@ -480,9 +523,10 @@
     font-size: 0.9rem;
   }
 
-  .status-badge,
   .application-action {
-    justify-self: auto;
+    grid-area: action;
+    justify-self: end;
+    align-self: center;
   }
 }
 
@@ -511,7 +555,7 @@
   }
 
   .card-company {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
 
   .status-badge {
