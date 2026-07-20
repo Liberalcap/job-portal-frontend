@@ -41,18 +41,6 @@ function LoginPage() {
 
     console.log("Login successful:", response);
 
-    // Store token
-    localStorage.setItem(
-      "token",
-      response.token
-    );
-
-    // Store role
-    localStorage.setItem(
-      "userRole",
-      response.role?.trim()
-    );
-
     // Store email
     localStorage.setItem(
       "userEmail",

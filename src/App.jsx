@@ -39,7 +39,12 @@ function App() {
     };
 
     window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    window.addEventListener("authchange", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("authchange", handleStorageChange);
+    };
   }, []);
 
   return (
