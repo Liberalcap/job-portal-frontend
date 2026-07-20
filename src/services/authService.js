@@ -1,5 +1,7 @@
 import api from "./api";
 
+const notifyAuthChange = () => window.dispatchEvent(new Event("authchange"));
+
 const authService = {
   // Register
   register: async (userData) => {
@@ -11,6 +13,7 @@ const authService = {
     // 🔥 store token immediately
     localStorage.setItem("authToken", token);
     localStorage.setItem("userRole", role);
+    notifyAuthChange();
 
     return response.data;
 
@@ -26,6 +29,7 @@ const authService = {
 
     localStorage.setItem("authToken", response.data.token);
     localStorage.setItem("userRole", response.data.role);
+    notifyAuthChange();
 
     return response.data;
   },
@@ -34,6 +38,7 @@ const authService = {
   logout: () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("userRole");
+    notifyAuthChange();
   },
 
   // Get current user
