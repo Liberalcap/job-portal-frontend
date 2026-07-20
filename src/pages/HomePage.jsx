@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../context/LoadingContext";
-import { HeroSkeleton, StatsSkeleton, CategorySkeleton } from "../components/Skeleton";
+import { StatsSkeleton, CategorySkeleton } from "../components/Skeleton";
 import "./Home.css";
 
 function HomePage() {
@@ -21,7 +21,29 @@ function HomePage() {
       <div className="home-container">
         <section className="hero-section">
           <div className="hero-content">
-            <HeroSkeleton />
+            <h1 className="hero-heading">Find Your Dream Job</h1>
+            <p className="hero-subtitle">
+              Discover amazing career opportunities and connect with top employers
+            </p>
+
+            <form onSubmit={handleSearch} className="search-form">
+              <div className="search-wrapper">
+                <input
+                  type="text"
+                  placeholder="Search jobs, companies, positions..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="search-input"
+                />
+                <button type="submit" className="search-button">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                  </svg>
+                  Search
+                </button>
+              </div>
+            </form>
           </div>
         </section>
         <section className="stats-section">
