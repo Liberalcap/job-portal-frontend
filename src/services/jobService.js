@@ -42,7 +42,12 @@ const jobService = {
 
   // Apply to job
   applyToJob: async (jobId) => {
-    const response = await api.post(`/api/applications/${jobId}`);
+    // Send the timestamp at the moment the candidate submits the application.
+    // The backend should persist this value as `appliedDate` and return it in
+    // the application DTO.
+    const response = await api.post(`/api/applications/${jobId}`, {
+      appliedDate: new Date().toISOString(),
+    });
     return response.data;
   },
 

@@ -51,12 +51,20 @@ function MyApplications() {
 
     const date = new Date(dateString);
 
+    if (Number.isNaN(date.getTime())) return "N/A";
+
     return date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
     });
   };
+
+  const getAppliedDate = (application) =>
+    application.appliedDate ||
+    application.applicationDate ||
+    application.createdAt ||
+    application.createdDate;
 
   if (loading) {
     return (
@@ -115,7 +123,7 @@ function MyApplications() {
                 </div>
 
                 <div className="card-date">
-                  {formatDate(app.appliedDate)}
+                  {formatDate(getAppliedDate(app))}
                 </div>
 
                 <div className="application-action">
