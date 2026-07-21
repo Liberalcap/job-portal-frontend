@@ -1,8 +1,8 @@
 # Job Portal Frontend
 
-Frontend for a full-stack Job Portal web application built using React, Tailwind CSS, and Vite.
+A modern React-based frontend for a full-stack Job Portal application built with React, Vite, and Tailwind CSS.
 
-The application allows users to browse jobs, apply for positions, and recruiters to manage job postings through a dedicated dashboard.
+The application enables job seekers to browse and apply for jobs while providing recruiters with a dedicated dashboard to create, manage, and monitor job postings through a responsive and user-friendly interface.
 
 ---
 
@@ -20,31 +20,31 @@ The application allows users to browse jobs, apply for positions, and recruiters
 
 ### Authentication
 
-- User login & registration
-- Recruiter login & registration
-- JWT authentication
+- User registration and login
+- Recruiter registration and login
+- JWT-based authentication
 - Protected routes
-- Forgot password & reset password
+- Forgot password and reset password flow
 
 ### Job Seeker Features
 
-- Browse all jobs
-- View job details
+- Browse available jobs
+- View detailed job descriptions
 - Apply for jobs
-- View applied jobs
+- Track applied jobs
 
 ### Recruiter Features
 
 - Recruiter dashboard
 - Create job postings
-- Edit jobs
+- Edit job postings
 - Manage job listings
-- View applicants/users
+- View applicants and users
 
 ### UI Features
 
 - Responsive design
-- Modern clean interface
+- Clean and modern interface
 - Loading states
 - Error handling
 - Role-based navigation
@@ -103,19 +103,19 @@ The application allows users to browse jobs, apply for positions, and recruiters
 
 ## Tech Stack
 
-- **React.js** - UI library
+- **React.js** - Frontend UI library
 - **React Router DOM** - Client-side routing
-- **Axios** - HTTP client
-- **Tailwind CSS** - Styling
-- **Vite** - Build tool & dev server
+- **Axios** - HTTP client for API requests
+- **Tailwind CSS** - Utility-first styling
+- **Vite** - Frontend build tool and dev server
 
 ---
 
 ## Prerequisites
 
-- **Node.js** (v16 or higher)
-- **npm** or **yarn** package manager
-- **Git** for version control
+- **Node.js** v16 or higher
+- **npm** or **yarn**
+- **Git**
 
 ---
 
@@ -136,13 +136,15 @@ npm install
 yarn install
 ```
 
+````md
 ### 3. Create Environment Variables
 
 Create a `.env` file in the root directory:
 
-```bash
+```env
 VITE_API_BASE_URL=http://localhost:3000/api
 ```
+````
 
 ### 4. Start Development Server
 
@@ -152,20 +154,7 @@ npm run dev
 yarn dev
 ```
 
-The application will be available at `http://localhost:5173`
-
----
-
-## Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-
-```env
-# Backend API Configuration
-VITE_API_BASE_URL=http://localhost:3000/api
-
-# Add other environment variables as needed
-```
+## The application will be available at `http://localhost:5173`
 
 **Note:** Variables must be prefixed with `VITE_` to be accessible in the frontend.
 
@@ -184,36 +173,39 @@ VITE_API_BASE_URL=http://localhost:3000/api
 
 ```
 src/
- ├── assets/                 # Static assets
- ├── components/             # Reusable components
- │   ├── LoadingBar.jsx
- │   ├── Navbar.jsx
- │   └── Skeleton.jsx
- ├── context/                # React Context (state management)
- │   └── LoadingContext.jsx
- ├── pages/                  # Page components
- │   ├── HomePage.jsx
- │   ├── JobsPage.jsx
- │   ├── JobDetails.jsx
- │   ├── LoginPage.jsx
- │   ├── RegisterPage.jsx
- │   ├── CreateJob.jsx
- │   ├── EditJob.jsx
- │   ├── RecruiterDashboard.jsx
- │   ├── MyApplications.jsx
- │   ├── UsersPage.jsx
- │   ├── ForgotPasswordPage.jsx
- │   └── ResetPasswordPage.jsx
- ├── services/               # API service calls
- │   ├── api.js             # Axios instance & interceptors
- │   ├── authService.js     # Authentication endpoints
- │   ├── jobService.js      # Job-related endpoints
- │   ├── applicationService.js  # Application endpoints
- │   └── userService.js     # User endpoints
- ├── App.jsx                # Main app component
- ├── main.jsx               # Entry point
- ├── index.css              # Global styles
- └── App.css                # App-level styles
+├── assets/
+├── components/
+│   ├── LoadingBar.jsx
+│   ├── LoadingBar.css
+│   ├── Navbar.jsx
+│   ├── Navbar.css
+│   ├── Skeleton.jsx
+│   └── Skeleton.css
+├── context/
+│   └── LoadingContext.jsx
+├── pages/
+│   ├── HomePage.jsx
+│   ├── JobsPage.jsx
+│   ├── JobDetails.jsx
+│   ├── LoginPage.jsx
+│   ├── RegisterPage.jsx
+│   ├── CreateJob.jsx
+│   ├── EditJob.jsx
+│   ├── RecruiterDashboard.jsx
+│   ├── MyApplications.jsx
+│   ├── UsersPage.jsx
+│   ├── ForgotPasswordPage.jsx
+│   └── ResetPasswordPage.jsx
+├── services/
+│   ├── api.js
+│   ├── authService.js
+│   ├── jobService.js
+│   ├── applicationService.js
+│   └── userService.js
+├── App.jsx
+├── main.jsx
+├── index.css
+└── App.css
 ```
 
 ---
