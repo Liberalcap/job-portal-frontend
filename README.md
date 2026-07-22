@@ -10,6 +10,8 @@ The application enables job seekers to browse and apply for jobs while providing
 
 **Frontend Deployment:** https://job-portal-frontend-six-pi.vercel.app/
 
+**Backend Deployment:** https://job-portal-backend-rvzr.onrender.com
+
 **Frontend Repository:** https://github.com/Liberalcap/job-portal-frontend
 
 **Backend Repository:** https://github.com/Liberalcap/job-portal-backend
