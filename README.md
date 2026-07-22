@@ -141,7 +141,7 @@ yarn install
 Create a `.env` file in the root directory:
 
 ```env
-VITE_API_BASE_URL=http://localhost:3000/api
+VITE_API_BASE_URL=http://localhost:8080/api
 ```
 
 ### 4. Start Development Server
