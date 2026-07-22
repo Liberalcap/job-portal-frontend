@@ -2,7 +2,7 @@
 
 A modern React-based frontend for a full-stack Job Portal application built with React, Vite, and Tailwind CSS.
 
-The application enables job seekers to browse and apply for jobs while providing recruiters with a dedicated dashboard to create, manage, and monitor job postings through a responsive and user-friendly interface.
+The application enables job seekers to browse and apply for jobs while providing recruiters with a dedicated dashboard to create, manage, and monitor job postings through a responsive, user-friendly interface optimized for desktop and mobile devices.
 
 ---
 
@@ -43,7 +43,7 @@ The application enables job seekers to browse and apply for jobs while providing
 
 ### UI Features
 
-- Responsive design
+- Fully responsive design for desktop, tablet, and mobile screens
 - Clean and modern interface
 - Loading states
 - Error handling
