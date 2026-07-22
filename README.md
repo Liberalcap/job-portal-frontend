@@ -136,7 +136,6 @@ npm install
 yarn install
 ```
 
-````md
 ### 3. Create Environment Variables
 
 Create a `.env` file in the root directory:
@@ -144,7 +143,6 @@ Create a `.env` file in the root directory:
 ```env
 VITE_API_BASE_URL=http://localhost:3000/api
 ```
-````
 
 ### 4. Start Development Server
 
@@ -154,9 +152,9 @@ npm run dev
 yarn dev
 ```
 
-## The application will be available at `http://localhost:5173`
+The application will be available at `http://localhost:5173`.
 
-**Note:** Variables must be prefixed with `VITE_` to be accessible in the frontend.
+> **Note:** Environment variables must be prefixed with `VITE_` to be accessible in the frontend.
 
 ---
 
